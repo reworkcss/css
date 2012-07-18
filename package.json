@@ -1,0 +1,15 @@
+{
+  "name": "css",
+  "version": "0.0.1",
+  "description": "CSS parser / stringifier using css-parse and css-stringify",
+  "keywords": ["css", "parser", "stylesheet"],
+  "author": "TJ Holowaychuk <tj@vision-media.ca>",
+  "dependencies": {
+    "css-parse": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "index"
+}
