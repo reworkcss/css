@@ -15,6 +15,42 @@ css.stringify(css.parse('body{foo:bar}'));
 css.stringify(css.parse('body{foo:bar}'), { compress: true });
 ```
 
+js:
+
+```js
+var css = require('css')
+var obj = css.parse('tobi { name: "tobi" }')
+css.stringify(obj);
+```
+
+object returned by `.parse()`:
+
+```json
+{
+  "stylesheet": {
+    "rules": [
+      {
+        "selector": "tobi",
+        "declarations": [
+          {
+            "property": "name",
+            "value": "tobi"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+string returned by `.stringify()`:
+
+```css
+tobi {
+  name: tobi;
+}
+```
+
 ## License 
 
 (The MIT License)
