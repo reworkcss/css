@@ -32,4 +32,5 @@ function mean(arr) {
 }
 
 console.log();
-console.log('  avg: %d ops/s', mean(results));
+console.log('   avg: %d ops/s', mean(results));
+console.log('  size: %d kb', (str.length / 1024).toFixed(2));
