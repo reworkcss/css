@@ -8,9 +8,5 @@
     "css-parse": "1.0.0",
     "css-stringify": "1.0.0"
   },
-  "devDependencies": {
-    "mocha": "*",
-    "should": "*"
-  },
   "main": "index"
 }
