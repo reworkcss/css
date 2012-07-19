@@ -9,12 +9,6 @@
 
 ## Example
 
-```js
-var css = require('css');
-css.stringify(css.parse('body{foo:bar}'));
-css.stringify(css.parse('body{foo:bar}'), { compress: true });
-```
-
 js:
 
 ```js
@@ -43,12 +37,18 @@ object returned by `.parse()`:
 }
 ```
 
-string returned by `.stringify()`:
+string returned by `.stringify(ast)`:
 
 ```css
 tobi {
   name: tobi;
 }
+```
+
+string returned by `.stringify(ast, { compress: true })`:
+
+```css
+tobi{name:tobi}
 ```
 
 ## License 
