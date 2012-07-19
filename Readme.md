@@ -12,6 +12,7 @@
 ```js
 var css = require('css');
 css.stringify(css.parse('body{foo:bar}'));
+css.stringify(css.parse('body{foo:bar}'), { compress: true });
 ```
 
 ## License 
