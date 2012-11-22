@@ -1,7 +1,7 @@
 
 # css
 
-  CSS parser / stringifier using [css-parse](https://github.com/visionmedia/node-css-parse) and [css-stringify](https://github.com/visionmedia/node-css-stringify).
+  CSS parser / stringifier using [css-parse](https://github.com/visionmedia/css-parse) and [css-stringify](https://github.com/visionmedia/css-stringify).
 
 ## Installation
 
