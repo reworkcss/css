@@ -4,8 +4,8 @@
   "description": "CSS parser / stringifier using css-parse and css-stringify",
   "keywords": ["css", "parser", "stylesheet"],
   "dependencies": {
-    "visionmedia/css-parse": "*",
-    "visionmedia/css-stringify": "*"
+    "visionmedia/css-parse": "1.4.0",
+    "visionmedia/css-stringify": "1.2.0"
   },
   "scripts": [
     "index.js"
