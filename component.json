@@ -1,11 +1,11 @@
 {
   "name": "css",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "CSS parser / stringifier using css-parse and css-stringify",
   "keywords": ["css", "parser", "stylesheet"],
   "dependencies": {
-    "visionmedia/css-parse": "1.5.2",
-    "visionmedia/css-stringify": "1.3.1"
+    "visionmedia/css-parse": "1.6.0",
+    "visionmedia/css-stringify": "1.4.0"
   },
   "scripts": [
     "index.js"
