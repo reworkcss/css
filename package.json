@@ -1,6 +1,6 @@
 {
   "name": "css",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "CSS parser / stringifier using css-parse and css-stringify",
   "keywords": [
     "css",
