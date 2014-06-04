@@ -71,7 +71,7 @@ describe('stringify(obj, {sourcemap: true})', function(){
     map.sourceContentFor(file).should.eql(src);
   });
 
-  it('should apply included source maps', function(){
+  it('should apply included source maps, with paths adjusted to CWD', function(){
     var file = 'test/stringify/source-map-apply.css';
     var src = read(file, 'utf8');
     var stylesheet = parse(src, { source: file, position: true });
@@ -84,14 +84,28 @@ describe('stringify(obj, {sourcemap: true})', function(){
       column: 0,
       line: 1,
       name: null,
-      source: 'source-map-apply.scss'
+      source: 'test/stringify/source-map-apply.scss'
     });
 
     map.originalPositionFor({ line: 2, column: 2 }).should.eql({
       column: 7,
       line: 1,
       name: null,
-      source: 'source-map-apply.scss'
+      source: 'test/stringify/source-map-apply.scss'
     });
+  });
+
+  it('should convert Windows-style paths to URLs', function(){
+    var originalSep = path.sep;
+    path.sep = '\\'; // Pretend we’re on Windows (if we aren’t already).
+
+    var src = 'C:\\test\\source.css';
+    var css = 'a { color: black; }'
+    var stylesheet = parse(css, {source: src, position: true});
+    var result = stringify(stylesheet, {sourcemap: true});
+
+    result.map.sources.should.eql(['/test/source.css']);
+
+    path.sep = originalSep;
   });
 });
