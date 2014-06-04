@@ -1,0 +1,12 @@
+.foo:matches(.bar,.baz),
+.foo:matches(.bar, .baz),
+.foo:matches(.bar , .baz),
+.foo:matches(.bar ,.baz) {
+  prop: value;
+}
+
+.foo:matches(.bar,.baz,.foobar),
+.foo:matches(.bar, .baz,),
+.foo:matches(,.bar , .baz) {
+  anotherprop: anothervalue;
+}

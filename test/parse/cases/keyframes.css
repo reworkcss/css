@@ -1,0 +1,13 @@
+@keyframes fade {
+  /* from above */
+  from {
+    /* from inside */
+    opacity: 0;
+  }
+
+  /* to above */
+  to {
+    /* to inside */
+    opacity: 1;
+  }
+}
