@@ -1,0 +1,9 @@
+@supports (display: flex) {
+  div {
+    display: flex;
+  }
+
+  div {
+    something: else;
+  }
+}

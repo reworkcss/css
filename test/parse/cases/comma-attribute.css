@@ -1,0 +1,39 @@
+.foo[bar="baz,quz"] {
+  foobar: 123;
+}
+
+.bar,
+#bar[baz="qux,foo"],
+#qux {
+  foobar: 456;
+}
+
+.baz[qux=",foo"],
+.baz[qux="foo,"],
+.baz[qux="foo,bar,baz"],
+.baz[qux=",foo,bar,baz,"],
+.baz[qux=" , foo , bar , baz , "] {
+  foobar: 789;
+}
+
+.qux[foo='bar,baz'],
+.qux[bar="baz,foo"],
+#qux[foo="foobar"],
+#qux[foo=',bar,baz, '] {
+  foobar: 012;
+}
+
+#foo[foo=""],
+#foo[bar=" "],
+#foo[bar=","],
+#foo[bar=", "],
+#foo[bar=" ,"],
+#foo[bar=" , "],
+#foo[baz=''],
+#foo[qux=' '],
+#foo[qux=','],
+#foo[qux=', '],
+#foo[qux=' ,'],
+#foo[qux=' , '] {
+  foobar: 345;
+}
