@@ -1,8 +1,8 @@
 
-var css = require('./')
-  , fs = require('fs')
-  , read = fs.readFileSync
-  , str = read('examples/ui.css', 'utf8');
+var css = require('./');
+var fs = require('fs');
+var read = fs.readFileSync;
+var str = read('benchmark/large.css', 'utf8');
 
 var n = 5000;
 var ops = 200;
