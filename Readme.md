@@ -1,5 +1,4 @@
-
-# css
+# css [![Build Status](https://travis-ci.org/reworkcss/css.svg?branch=master)](https://travis-ci.org/reworkcss/css)
 
   CSS parser / stringifier.
 
@@ -23,43 +22,51 @@ Accepts a CSS string and returns an AST `object`.
 
 `options`:
 
-- `silent` - silently fail on parse errrors.
-- `source` - recommended for debugging.
-- `position` - `true` by default.
+- `silent` - silently fail on parse errors.
+- `source` - the path to the file containing `css`. Makes errors and source
+  maps more helpful, by letting them know where code comes from.
+- `position` - record the line and column of the start and end of nodes.
+  Required for source map generation. `true` by default.
+
+For the `source` and `position` options, also see the parse tree
+[examples](#examples) below.
 
 ### css.stringify(object, [options])
 
-Accepts an AST `object` from `parse` and returns a CSS string.
+Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 
 `options`:
 
-- `compress` - compress the output
-- `sourcemap` - return a sourcemap along with the CSS output (requires use of `position` with `css.parse`).
+- `compress` - omit comments and extraneous whitespace.
+- `sourcemap` - return a sourcemap along with the CSS output (requires the
+  `position` option of `css.parse`, and its `source` option is strongly
+  recommended).
 
 ```js
-var ast = css.parse('body { font-size: 12px; }', { position: true });
-var css = css.stringify(ast);
-var result = css.stringify(ast, { sourcemap: true });
+var ast = css.parse('body { font-size: 12px; }', { position: true, source: 'source.css' });
 
+var css = css.stringify(ast);
+
+var result = css.stringify(ast, { sourcemap: true });
 result.code // string with CSS
-result.map // source map
+result.map // source map object
 ```
 
 ### Errors
 
-Errors will have `err.position` where `position` is:
+Errors will have `error.position`, with the following properties:
 
-- `start` - start line and column numbers
-- `end` - end line and column numbers
-- `source` - `options.source` if passed to options
+- `start` - start line and column numbers.
+- `end` - end line and column numbers.
+- `source` - `options.source` if passed to `css.parse`.
 
 If you create any errors in plugins such as in
 [rework](https://github.com/reworkcss/rework), you __must__ set the `position`
 as well for consistency.
 
-## Example
+## Examples
 
-css:
+CSS:
 
 ```css
 body {
@@ -68,7 +75,7 @@ body {
 }
 ```
 
-parse tree:
+Parse tree:
 
 ```json
 {
@@ -98,7 +105,7 @@ parse tree:
 }
 ```
 
-parse tree with `.position` enabled:
+Parse tree with the `position` option enabled:
 
 ```json
 {
@@ -159,7 +166,7 @@ parse tree with `.position` enabled:
 ```
 
 `node.position.content` is set on each node to the full source string. If you
-also pass in `source: 'path/to/original.css'`, that will be set on
+also pass in `source: 'path/to/source.css'` to `css.parse`, that will be set on
 `node.position.source`.
 
 ## License
