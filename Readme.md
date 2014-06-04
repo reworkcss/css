@@ -38,8 +38,8 @@ Accepts an AST `object` from `parse` and returns a CSS string.
 
 ```js
 var ast = css.parse('body { font-size: 12px; }', { position: true });
-var css = stringify(ast);
-var result = stringify(ast, { sourcemap: true });
+var css = css.stringify(ast);
+var result = css.stringify(ast, { sourcemap: true });
 
 result.code // string with CSS
 result.map // source map
