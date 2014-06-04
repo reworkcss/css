@@ -1,3 +1,13 @@
+  * drop Component(1) support
+  * add support for @custom-media, @host, and @font-face
+  * allow commas inside selector functions
+  * allow empty property values
+  * changed default options.position value to true
+  * remove comments from properties and values
+  * asserts when selectors are missing
+  * added node.position.content property
+  * absorb css-parse and css-stringify libraries
+
 1.6.1 / 2014-01-02
 ==================
 
