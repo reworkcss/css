@@ -1,34 +1,95 @@
 
 # css
 
-  CSS parser / stringifier using [css-parse](https://github.com/visionmedia/css-parse) and [css-stringify](https://github.com/visionmedia/css-stringify).
+  CSS parser / stringifier.
 
 ## Installation
 
     $ npm install css
 
-## Example
+## Usage
 
-js:
-
-```js
+```javascript
 var css = require('css')
-var obj = css.parse('tobi { name: "tobi" }')
-css.stringify(obj);
+var obj = css.parse('body { font-size: 12px; }', options)
+css.stringify(obj, options);
 ```
 
-object returned by `.parse()`:
+## API
+
+### css.parse(css, [options])
+
+Accepts a CSS string and returns an AST `object`.
+
+`options`:
+
+- `silent` - silently fail on parse errrors.
+- `source` - recommended for debugging.
+- `position` - `true` by default.
+
+### css.stringify(object, [options])
+
+Accepts an AST `object` from `parse` and returns a CSS string.
+
+`options`:
+
+- `compress` - compress the output
+- `sourcemap` - return a sourcemap along with the CSS output (requires use of `position` with `css.parse`).
+
+```js
+var ast = css.parse('body { font-size: 12px; }', { position: true });
+var css = stringify(ast);
+var result = stringify(ast, { sourcemap: true });
+
+result.code // string with CSS
+result.map // source map
+```
+
+### Errors
+
+Errors will have `err.position` where `position` is:
+
+- `start` - start line and column numbers
+- `end` - end line and column numbers
+- `source` - `options.source` if passed to options
+
+If you create any errors in plugins such as in
+[rework](https://github.com/reworkcss/rework), you __must__ set the `position`
+as well for consistency.
+
+## Example
+
+css:
+
+```css
+body {
+  background: #eee;
+  color: #888;
+}
+```
+
+parse tree:
 
 ```json
 {
+  "type": "stylesheet",
   "stylesheet": {
     "rules": [
       {
-        "selector": "tobi",
+        "type": "rule",
+        "selectors": [
+          "body"
+        ],
         "declarations": [
           {
-            "property": "name",
-            "value": "tobi"
+            "type": "declaration",
+            "property": "background",
+            "value": "#eee"
+          },
+          {
+            "type": "declaration",
+            "property": "color",
+            "value": "#888"
           }
         ]
       }
@@ -37,41 +98,70 @@ object returned by `.parse()`:
 }
 ```
 
-string returned by `.stringify(ast)`:
+parse tree with `.position` enabled:
 
-```css
-tobi {
-  name: tobi;
+```json
+{
+  "type": "stylesheet",
+  "stylesheet": {
+    "rules": [
+      {
+        "type": "rule",
+        "selectors": [
+          "body"
+        ],
+        "declarations": [
+          {
+            "type": "declaration",
+            "property": "background",
+            "value": "#eee",
+            "position": {
+              "start": {
+                "line": 3,
+                "column": 3
+              },
+              "end": {
+                "line": 3,
+                "column": 19
+              }
+            }
+          },
+          {
+            "type": "declaration",
+            "property": "color",
+            "value": "#888",
+            "position": {
+              "start": {
+                "line": 4,
+                "column": 3
+              },
+              "end": {
+                "line": 4,
+                "column": 14
+              }
+            }
+          }
+        ],
+        "position": {
+          "start": {
+            "line": 2,
+            "column": 1
+          },
+          "end": {
+            "line": 5,
+            "column": 2
+          }
+        }
+      }
+    ]
+  }
 }
 ```
 
-string returned by `.stringify(ast, { compress: true })`:
+`node.position.content` is set on each node to the full source string. If you
+also pass in `source: 'path/to/original.css'`, that will be set on
+`node.position.source`.
 
-```css
-tobi{name:tobi}
-```
+## License
 
-## License 
-
-(The MIT License)
-
-Copyright (c) 2012 TJ Holowaychuk &lt;tj@vision-media.ca&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+MIT
