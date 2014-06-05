@@ -76,4 +76,33 @@ describe('parse(str)', function(){
     });
   });
 
+  it('should set parent property', function() {
+    var result = parse(
+      'thing { test: value; }\n' +
+      '@media (min-width: 100px) { thing { test: value; } }');
+
+    assert.equal(result.parent, null);
+
+    var rules = result.stylesheet.rules;
+    assert.equal(rules.length, 2);
+
+    var rule = rules[0];
+    assert.equal(rule.parent, result);
+    assert.equal(rule.declarations.length, 1);
+
+    var decl = rule.declarations[0];
+    assert.equal(decl.parent, rule);
+
+    var media = rules[1];
+    assert.equal(media.parent, result);
+    assert.equal(media.rules.length, 1);
+
+    rule = media.rules[0];
+    assert.equal(rule.parent, media);
+
+    assert.equal(rule.declarations.length, 1);
+    decl = rule.declarations[0];
+    assert.equal(decl.parent, rule);
+  });
+
 });
