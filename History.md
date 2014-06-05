@@ -7,6 +7,7 @@
   * asserts when selectors are missing
   * added node.position.content property
   * absorb css-parse and css-stringify libraries
+  * apply original source maps from source files
 
 1.6.1 / 2014-01-02
 ==================
