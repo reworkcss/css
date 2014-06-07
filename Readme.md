@@ -88,11 +88,11 @@ Parse tree:
             "value": "#eee",
             "position": {
               "start": {
-                "line": 3,
+                "line": 2,
                 "column": 3
               },
               "end": {
-                "line": 3,
+                "line": 2,
                 "column": 19
               }
             }
@@ -103,11 +103,11 @@ Parse tree:
             "value": "#888",
             "position": {
               "start": {
-                "line": 4,
+                "line": 3,
                 "column": 3
               },
               "end": {
-                "line": 4,
+                "line": 3,
                 "column": 14
               }
             }
@@ -115,11 +115,11 @@ Parse tree:
         ],
         "position": {
           "start": {
-            "line": 2,
+            "line": 1,
             "column": 1
           },
           "end": {
-            "line": 5,
+            "line": 4,
             "column": 2
           }
         }
