@@ -30,7 +30,7 @@ describe('stringify(obj)', function(){
 describe('stringify(obj, {sourcemap: true})', function(){
   var file = 'test/stringify/source-map-case.css';
   var src = read(file, 'utf8');
-  var stylesheet = parse(src, { source: file, position: true });
+  var stylesheet = parse(src, { source: file });
   function loc(line, column) {
     return { line: line, column: column, source: file, name: null };
   }
@@ -74,7 +74,7 @@ describe('stringify(obj, {sourcemap: true})', function(){
   it('should apply included source maps, with paths adjusted to CWD', function(){
     var file = 'test/stringify/source-map-apply.css';
     var src = read(file, 'utf8');
-    var stylesheet = parse(src, { source: file, position: true });
+    var stylesheet = parse(src, { source: file });
     var result = stringify(stylesheet, { sourcemap: true });
     result.should.have.property('code');
     result.should.have.property('map');
@@ -101,8 +101,8 @@ describe('stringify(obj, {sourcemap: true})', function(){
 
     var src = 'C:\\test\\source.css';
     var css = 'a { color: black; }'
-    var stylesheet = parse(css, {source: src, position: true});
-    var result = stringify(stylesheet, {sourcemap: true});
+    var stylesheet = parse(css, { source: src });
+    var result = stringify(stylesheet, { sourcemap: true });
 
     result.map.sources.should.eql(['/test/source.css']);
 

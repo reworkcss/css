@@ -25,11 +25,6 @@ Accepts a CSS string and returns an AST `object`.
 - `silent` - silently fail on parse errors.
 - `source` - the path to the file containing `css`. Makes errors and source
   maps more helpful, by letting them know where code comes from.
-- `position` - record the line and column of the start and end of nodes.
-  Required for source map generation. `true` by default.
-
-For the `source` and `position` options, also see the parse tree
-[examples](#examples) below.
 
 ### css.stringify(object, [options])
 
@@ -38,9 +33,8 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 `options`:
 
 - `compress` - omit comments and extraneous whitespace.
-- `sourcemap` - return a sourcemap along with the CSS output (requires the
-  `position` option of `css.parse`, and its `source` option is strongly
-  recommended).
+- `sourcemap` - return a sourcemap along with the CSS output. Using the `source`
+  option of `css.parse` is strongly recommended when creating a source map.
 
 ```js
 var ast = css.parse('body { font-size: 12px; }', { position: true, source: 'source.css' });
@@ -76,36 +70,6 @@ body {
 ```
 
 Parse tree:
-
-```json
-{
-  "type": "stylesheet",
-  "stylesheet": {
-    "rules": [
-      {
-        "type": "rule",
-        "selectors": [
-          "body"
-        ],
-        "declarations": [
-          {
-            "type": "declaration",
-            "property": "background",
-            "value": "#eee"
-          },
-          {
-            "type": "declaration",
-            "property": "color",
-            "value": "#888"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-Parse tree with the `position` option enabled:
 
 ```json
 {
