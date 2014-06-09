@@ -1,6 +1,6 @@
 # css [![Build Status](https://travis-ci.org/reworkcss/css.svg?branch=master)](https://travis-ci.org/reworkcss/css)
 
-  CSS parser / stringifier.
+CSS parser / stringifier.
 
 ## Installation
 
@@ -8,7 +8,7 @@
 
 ## Usage
 
-```javascript
+```js
 var css = require('css')
 var obj = css.parse('body { font-size: 12px; }', options)
 css.stringify(obj, options);
@@ -16,14 +16,14 @@ css.stringify(obj, options);
 
 ## API
 
-### css.parse(css, [options])
+### css.parse(code, [options])
 
 Accepts a CSS string and returns an AST `object`.
 
 `options`:
 
-- `silent` - silently fail on parse errors.
-- `source` - the path to the file containing `css`. Makes errors and source
+- silent: silently fail on parse errors.
+- source: the path to the file containing `css`. Makes errors and source
   maps more helpful, by letting them know where code comes from.
 
 ### css.stringify(object, [options])
@@ -32,9 +32,11 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 
 `options`:
 
-- `compress` - omit comments and extraneous whitespace.
-- `sourcemap` - return a sourcemap along with the CSS output. Using the `source`
+- compress: omit comments and extraneous whitespace.
+- sourcemap: return a sourcemap along with the CSS output. Using the `source`
   option of `css.parse` is strongly recommended when creating a source map.
+
+### Example
 
 ```js
 var ast = css.parse('body { font-size: 12px; }', { position: true, source: 'source.css' });
@@ -48,17 +50,168 @@ result.map // source map object
 
 ### Errors
 
-Errors will have `error.position`, with the following properties:
-
-- `start` - start line and column numbers.
-- `end` - end line and column numbers.
-- `source` - `options.source` if passed to `css.parse`.
+Errors will have `error.position`, just like [`node.position`](#position).
 
 If you create any errors in plugins such as in
 [rework](https://github.com/reworkcss/rework), you __must__ set the `position`
 as well for consistency.
 
-## Examples
+## AST
+
+### Common properties
+
+All nodes have the following properties.
+
+#### position
+
+Information about the position in the source string that corresponds to
+the node.
+
+`Object`:
+
+- start: `Object`:
+  - line: `Number`.
+  - column: `Number`.
+- end: `Object`:
+  - line: `Number`.
+  - column: `Number`.
+- source: `String` or `undefined`. The value of `options.source` if passed to
+  `css.parse`. Otherwise `undefined`.
+- content: `String`. The full source string passed to `css.parse`.
+
+The line and column numbers are 1-based: The first line is 1 and the first
+column of a line is 1 (not 0).
+
+The `position` property lets you know from which source file the node comes
+from (if available), what that file contains, and what part of that file was
+parsed into the node.
+
+#### type
+
+`String`. The possible values are the ones listed in the Types section below.
+
+### Types
+
+The available values of `node.type` are listed below, as well as the available
+properties of each node (other than the common properties listed above.)
+
+#### stylesheet
+
+The root node returned by `css.parse`.
+
+- stylesheet: `Object`:
+  - rules: `Array` of nodes with the types `rule`, `comment` and any of the
+    at-rule types.
+
+#### rule
+
+- selectors: `Array` of `String`s. The list of selectors of the rule, split
+  on commas. Each selector is trimmed from whitespace and comments.
+- declarations: `Array` of nodes with the types `declaration` and `comment`.
+
+#### declaration
+
+- property: `String`. The property name, trimmed from whitespace and
+  comments. May not be empty.
+- value: `String`. The value of the property, trimmed from whitespace and
+  comments. Empty values are allowed.
+
+#### comment
+
+A rule-level or declaration-level comment. Comments inside selectors,
+properties and values etc. are lost.
+
+- comment: `String`. The part between the starting `/*` and the ending `*/`
+  of the comment, including whitespace.
+
+#### charset
+
+The `@charset` at-rule.
+
+- charset: `String`. The part following `@charset `.
+
+#### custom-media
+
+The `@custom-media` at-rule.
+
+- name: `String`. The `--`-prefixed name.
+- media: `String`. The part following the name.
+
+#### document
+
+The `@document` at-rule.
+
+- document: `String`. The part following `@document `.
+- vendor: `String` or `undefined`. The vendor prefix in `@document`, or
+  `undefined` if there is none.
+- rules: `Array` of nodes with the types `rule`, `comment` and any of the
+  at-rule types.
+
+#### font-face
+
+The `@font-face` at-rule.
+
+- declarations: `Array` of nodes with the types `declaration` and `comment`.
+
+#### host
+
+The `@host` at-rule.
+
+- rules: `Array` of nodes with the types `rule`, `comment` and any of the
+  at-rule types.
+
+#### import
+
+The `@import` at-rule.
+
+- import: `String`. The part following `@import `.
+
+#### keyframes
+
+The `@keyframes` at-rule.
+
+- name: `String`. The name of the keyframes rule.
+- vendor: `String` or `undefined`. The vendor prefix in `@keyframes`, or
+  `undefined` if there is none.
+- keyframes: `Array` of nodes with the types `keyframe` and `comment`.
+
+#### keyframe
+
+- values: `Array` of `String`s. The list of “selectors” of the keyframe rule,
+  split on commas. Each “selector” is trimmed from whitespace.
+- declarations: `Array` of nodes with the types `declaration` and `comment`.
+
+#### media
+
+The `@media` at-rule.
+
+- media: `String`. The part following `@media `.
+- rules: `Array` of nodes with the types `rule`, `comment` and any of the
+  at-rule types.
+
+#### namespace
+
+The `@namespace` at-rule.
+
+- namespace: `String`. The part following `@namespace `.
+
+#### page
+
+The `@page` at-rule.
+
+- selectors: `Array` of `String`s. The list of selectors of the rule, split
+  on commas. Each selector is trimmed from whitespace and comments.
+- declarations: `Array` of nodes with the types `declaration` and `comment`.
+
+#### supports
+
+The `@supports` at-rule.
+
+- supports: `String`. The part following `@supports `.
+- rules: `Array` of nodes with the types `rule`, `comment` and any of the
+  at-rule types.
+
+### Example
 
 CSS:
 
@@ -128,10 +281,6 @@ Parse tree:
   }
 }
 ```
-
-`node.position.content` is set on each node to the full source string. If you
-also pass in `source: 'path/to/source.css'` to `css.parse`, that will be set on
-`node.position.source`.
 
 ## License
 
