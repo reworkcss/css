@@ -2,13 +2,9 @@
 
 CSS parser / stringifier.
 
-
-
 ## Installation
 
     $ npm install css
-
-
 
 ## Usage
 
@@ -17,8 +13,6 @@ var css = require('css')
 var obj = css.parse('body { font-size: 12px; }', options)
 css.stringify(obj, options);
 ```
-
-
 
 ## API
 
@@ -58,12 +52,9 @@ result.map // source map object
 
 Errors will have `error.position`, just like [`node.position`](#position).
 
-If you create any errors in plugins such as in [rework], you __must__ set the
-`position` as well for consistency.
-
-[rework]: https://github.com/reworkcss/rework
-
-
+If you create any errors in plugins such as in
+[rework](https://github.com/reworkcss/rework), you __must__ set the `position`
+as well for consistency.
 
 ## AST
 
@@ -98,7 +89,6 @@ parsed into the node.
 #### type
 
 `String`. The possible values are the ones listed in the Types section below.
-
 
 ### Types
 
@@ -221,7 +211,6 @@ The `@supports` at-rule.
 - rules: `Array` of nodes with the types `rule`, `comment` and any of the
   at-rule types.
 
-
 ### Example
 
 CSS:
@@ -292,7 +281,6 @@ Parse tree:
   }
 }
 ```
-
 
 ## License
 
