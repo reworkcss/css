@@ -1,3 +1,5 @@
+2.0.0 / 2014-06-18
+==================
 
   * add non-enumerable parent reference to each node
   * drop Component(1) support
