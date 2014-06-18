@@ -1,3 +1,5 @@
+
+  * add non-enumerable parent reference to each node
   * drop Component(1) support
   * add support for @custom-media, @host, and @font-face
   * allow commas inside selector functions
