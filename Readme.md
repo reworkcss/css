@@ -39,7 +39,7 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 ### Example
 
 ```js
-var ast = css.parse('body { font-size: 12px; }', { position: true, source: 'source.css' });
+var ast = css.parse('body { font-size: 12px; }', { source: 'source.css' });
 
 var css = css.stringify(ast);
 
