@@ -91,6 +91,10 @@ parsed into the node.
 
 `String`. The possible values are the ones listed in the Types section below.
 
+#### parent
+
+A reference to the parent node, or `null` if the node has no parent.
+
 ### Types
 
 The available values of `node.type` are listed below, as well as the available
