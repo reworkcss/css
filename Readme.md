@@ -9,8 +9,8 @@ CSS parser / stringifier.
 ## Usage
 
 ```js
-var css = require('css')
-var obj = css.parse('body { font-size: 12px; }', options)
+var css = require('css');
+var obj = css.parse('body { font-size: 12px; }', options);
 css.stringify(obj, options);
 ```
 
