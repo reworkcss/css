@@ -78,7 +78,6 @@ the node.
 - source: `String` or `undefined`. The value of `options.source` if passed to
   `css.parse`. Otherwise `undefined`.
 - content: `String`. The full source string passed to `css.parse`.
-- parent: `Object`. Reference to the parent node that contains this node.
 
 The line and column numbers are 1-based: The first line is 1 and the first
 column of a line is 1 (not 0).
