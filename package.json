@@ -16,7 +16,8 @@
     "mocha": "*",
     "should": "*",
     "matcha": "~0.4.0",
-    "bytes": "~0.2.1"
+    "bytes": "~0.2.1",
+    "inherits": "^2.0.1"
   },
   "scripts": {
     "benchmark": "matcha",
