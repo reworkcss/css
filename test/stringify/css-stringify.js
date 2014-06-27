@@ -95,6 +95,21 @@ describe('stringify(obj, {sourcemap: true})', function(){
     });
   });
 
+  it('should not apply included source maps when inputSourcemap is false', function(){
+    var file = 'test/stringify/source-map-apply.css';
+    var src = read(file, 'utf8');
+    var stylesheet = parse(src, { source: file });
+    var result = stringify(stylesheet, { sourcemap: true, inputSourcemaps: false });
+
+    var map = new SourceMapConsumer(result.map);
+    map.originalPositionFor({ line: 1, column: 0 }).should.eql({
+      column: 0,
+      line: 1,
+      name: null,
+      source: file
+    });
+  });
+
   it('should convert Windows-style paths to URLs', function(){
     var originalSep = path.sep;
     path.sep = '\\'; // Pretend we’re on Windows (if we aren’t already).

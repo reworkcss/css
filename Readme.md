@@ -35,6 +35,10 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 - compress: omit comments and extraneous whitespace.
 - sourcemap: return a sourcemap along with the CSS output. Using the `source`
   option of `css.parse` is strongly recommended when creating a source map.
+- inputSourcemaps: (enabled by default, specify `false` to disable) reads any
+  source maps referenced by the input files when generating the output source
+  map. When enabled, file system access may be required for reading the
+  referenced source maps.
 
 ### Example
 
