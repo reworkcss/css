@@ -1,0 +1,13 @@
+@supports (display: flex) or (display: box) {
+  /* flex above */
+
+  .flex {
+    /* flex inside */
+    display: box;
+    display: flex;
+  }
+
+  div {
+    something: else;
+  }
+}

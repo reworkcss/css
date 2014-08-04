@@ -1,9 +1,0 @@
-/* toc above */
-@page toc, index:blank {
-  /* toc inside */
-  color: green;
-}
-
-@page {
-  font-size: 16pt;
-}
