@@ -3,6 +3,7 @@ var parse = require('../').parse;
 var path = require('path');
 var read = require('fs').readFileSync;
 var SourceMapConsumer = require('source-map').SourceMapConsumer;
+var SourceMapGenerator = require('source-map').SourceMapGenerator;
 
 describe('stringify(obj, {sourcemap: true})', function() {
   var file = 'test/source-map/test.css';
@@ -99,5 +100,13 @@ describe('stringify(obj, {sourcemap: true})', function() {
     result.map.sources.should.eql(['/test/source.css']);
 
     path.sep = originalSep;
+  });
+
+  it('should return source map generator when sourcemap: "generator"', function(){
+    var css = 'a { color: black; }';
+    var stylesheet = parse(css);
+    var result = stringify(stylesheet, { sourcemap: 'generator' });
+
+    result.map.should.be.an.instanceOf(SourceMapGenerator);
   });
 });
