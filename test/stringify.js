@@ -1,12 +1,10 @@
 var stringify = require('../').stringify;
 var parse = require('../').parse;
-var fs = require('fs');
 var path = require('path');
-var read = fs.readFileSync;
-var readdir = fs.readdirSync;
+var read = require('fs').readFileSync;
 var SourceMapConsumer = require('source-map').SourceMapConsumer;
 
-describe('stringify(obj, {sourcemap: true})', function(){
+describe('stringify(obj, {sourcemap: true})', function() {
   var file = 'test/source-map/test.css';
   var src = read(file, 'utf8');
   var stylesheet = parse(src, { source: file });
@@ -23,7 +21,7 @@ describe('stringify(obj, {sourcemap: true})', function(){
     comment: loc(17, 0),
   };
 
-  it('should generate source maps alongside when using identity compiler', function(){
+  it('should generate source maps alongside when using identity compiler', function() {
     var result = stringify(stylesheet, { sourcemap: true });
     result.should.have.property('code');
     result.should.have.property('map');
@@ -37,7 +35,7 @@ describe('stringify(obj, {sourcemap: true})', function(){
     map.sourceContentFor(file).should.eql(src);
   });
 
-  it('should generate source maps alongside when using compress compiler', function(){
+  it('should generate source maps alongside when using compress compiler', function() {
     var result = stringify(stylesheet, { compress: true, sourcemap: true });
     result.should.have.property('code');
     result.should.have.property('map');
@@ -50,7 +48,7 @@ describe('stringify(obj, {sourcemap: true})', function(){
     map.sourceContentFor(file).should.eql(src);
   });
 
-  it('should apply included source maps, with paths adjusted to CWD', function(){
+  it('should apply included source maps, with paths adjusted to CWD', function() {
     var file = 'test/source-map/apply.css';
     var src = read(file, 'utf8');
     var stylesheet = parse(src, { source: file });
@@ -74,7 +72,7 @@ describe('stringify(obj, {sourcemap: true})', function(){
     });
   });
 
-  it('should not apply included source maps when inputSourcemap is false', function(){
+  it('should not apply included source maps when inputSourcemap is false', function() {
     var file = 'test/source-map/apply.css';
     var src = read(file, 'utf8');
     var stylesheet = parse(src, { source: file });
@@ -89,7 +87,7 @@ describe('stringify(obj, {sourcemap: true})', function(){
     });
   });
 
-  it('should convert Windows-style paths to URLs', function(){
+  it('should convert Windows-style paths to URLs', function() {
     var originalSep = path.sep;
     path.sep = '\\'; // Pretend we’re on Windows (if we aren’t already).
 
