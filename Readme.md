@@ -56,7 +56,9 @@ result.map // source map object
 
 ### Errors
 
-Errors will have `error.position`, just like [`node.position`](#position).
+Errors will have `error.position`, just like [`node.position`](#position). The
+error contains the source position in the message. To get the error message
+without the position use `error.reason`.
 
 If you create any errors in plugins such as in
 [rework](https://github.com/reworkcss/rework), you __must__ set the `position`
