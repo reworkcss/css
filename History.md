@@ -1,4 +1,4 @@
-2.1.0 / Unreleased
+2.1.0 / 2014-08-05
 ==================
 
   * change error message format and add `.reason` property to errors
