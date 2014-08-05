@@ -1,3 +1,12 @@
+2.1.0 / Unreleased
+==================
+
+  * change error message format and add `.reason` property to errors
+  * add `inputSourcemaps` option to disable input source map processing
+  * use `inherits` for inheritance (fixes some browsers)
+  * add `sourcemap: 'generator'` option to return the `SourceMapGenerator`
+    object
+
 2.0.0 / 2014-06-18
 ==================
 
