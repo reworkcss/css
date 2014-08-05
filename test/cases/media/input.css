@@ -1,0 +1,26 @@
+@media screen, projection {
+  /* html above */
+  html {
+    /* html inside */
+    background: #fffef0;
+    color: #300;
+  }
+
+  /* body above */
+  body {
+    /* body inside */
+    max-width: 35em;
+    margin: 0 auto;
+  }
+}
+
+@media print {
+  html {
+    background: #fff;
+    color: #000;
+  }
+  body {
+    padding: 1in;
+    border: 0.5pt solid #666;
+  }
+}

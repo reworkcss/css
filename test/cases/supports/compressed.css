@@ -1,0 +1,1 @@
+@supports (display: flex) or (display: box){.flex{display:box;display:flex;}div{something:else;}}

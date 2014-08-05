@@ -1,0 +1,13 @@
+@keyframes advanced {
+  top {
+    opacity[sqrt]: 0;
+  }
+
+  100 {
+    opacity: 0.5;
+  }
+
+  bottom {
+    opacity: 1;
+  }
+}

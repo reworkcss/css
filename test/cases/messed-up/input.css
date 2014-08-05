@@ -1,0 +1,15 @@
+body { foo
+  :
+  'bar' }
+
+   body{foo:bar;bar:baz}
+   body
+   {
+     foo
+     :
+     bar
+     ;
+     bar
+     :
+     baz
+     }

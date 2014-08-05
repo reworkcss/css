@@ -1,0 +1,178 @@
+/* tests compressed for easy testing */
+
+/* http://mathiasbynens.be/notes/css-escapes */
+
+/* will match elements with class=":`(" */
+
+
+
+/* will match elements with class="1a2b3c" */
+
+
+
+/* will match the element with id="#fake-id" */
+
+
+
+/* will match the element with id="---" */
+
+
+
+/* will match the element with id="-a-b-c-" */
+
+
+
+/* will match the element with id="©" */
+
+
+
+/* More tests from http://mathiasbynens.be/demo/html5-id */
+
+html {
+  font: 1.2em/1.6 Arial;
+}
+
+code {
+  font-family: Consolas;
+}
+
+li code {
+  background: rgba(255, 255, 255, .5);
+  padding: .3em;
+}
+
+li {
+  background: orange;
+}
+
+#♥ {
+  background: lime;
+}
+
+#© {
+  background: lime;
+}
+
+#“‘’” {
+  background: lime;
+}
+
+#☺☃ {
+  background: lime;
+}
+
+#⌘⌥ {
+  background: lime;
+}
+
+#𝄞♪♩♫♬ {
+  background: lime;
+}
+
+#\? {
+  background: lime;
+}
+
+#\@ {
+  background: lime;
+}
+
+#\. {
+  background: lime;
+}
+
+#\3A \) {
+  background: lime;
+}
+
+#\3A \`\( {
+  background: lime;
+}
+
+#\31 23 {
+  background: lime;
+}
+
+#\31 a2b3c {
+  background: lime;
+}
+
+#\<p\> {
+  background: lime;
+}
+
+#\<\>\<\<\<\>\>\<\> {
+  background: lime;
+}
+
+#\+\+\+\+\+\+\+\+\+\+\[\>\+\+\+\+\+\+\+\>\+\+\+\+\+\+\+\+\+\+\>\+\+\+\>\+\<\<\<\<\-\]\>\+\+\.\>\+\.\+\+\+\+\+\+\+\.\.\+\+\+\.\>\+\+\.\<\<\+\+\+\+\+\+\+\+\+\+\+\+\+\+\+\.\>\.\+\+\+\.\-\-\-\-\-\-\.\-\-\-\-\-\-\-\-\.\>\+\.\>\. {
+  background: lime;
+}
+
+#\# {
+  background: lime;
+}
+
+#\#\# {
+  background: lime;
+}
+
+#\#\.\#\.\# {
+  background: lime;
+}
+
+#\_ {
+  background: lime;
+}
+
+#\.fake\-class {
+  background: lime;
+}
+
+#foo\.bar {
+  background: lime;
+}
+
+#\3A hover {
+  background: lime;
+}
+
+#\3A hover\3A focus\3A active {
+  background: lime;
+}
+
+#\[attr\=value\] {
+  background: lime;
+}
+
+#f\/o\/o {
+  background: lime;
+}
+
+#f\\o\\o {
+  background: lime;
+}
+
+#f\*o\*o {
+  background: lime;
+}
+
+#f\!o\!o {
+  background: lime;
+}
+
+#f\'o\'o {
+  background: lime;
+}
+
+#f\~o\~o {
+  background: lime;
+}
+
+#f\+o\+o {
+  background: lime;
+}
+
+/* css-parse does not yet pass this test */
+
+/*#\{\}{background:lime;}*/
