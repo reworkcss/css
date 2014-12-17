@@ -1,0 +1,5 @@
+@supports
+    (display: flex)
+    {
+        .test { display: flex; }
+    }
