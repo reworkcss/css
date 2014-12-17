@@ -1,3 +1,9 @@
+Next
+====
+
+ * accept EOL characters and all other whitespace characters in `@` rules such
+   as `@media`
+
 2.1.0 / 2014-08-05
 ==================
 
