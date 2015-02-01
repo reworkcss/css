@@ -32,15 +32,17 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 
 `options`:
 
-- compress: omit comments and extraneous whitespace.
-- sourcemap: return a sourcemap along with the CSS output. Using the `source`
+ - compress: omit comments and extraneous whitespace.
+ - sourcemap: return a sourcemap along with the CSS output. Using the `source`
   option of `css.parse` is strongly recommended when creating a source map.
   Specify `sourcemap: 'generator'` to return the SourceMapGenerator object
   instead of serializing the source map.
-- inputSourcemaps: (enabled by default, specify `false` to disable) reads any
+ - inputSourcemaps: (enabled by default, specify `false` to disable) reads any
   source maps referenced by the input files when generating the output source
   map. When enabled, file system access may be required for reading the
   referenced source maps.
+ - indent: The indent used to format the output. Defaults to '&nbsp;&nbsp;' (two-spaces)
+
 
 ### Example
 
