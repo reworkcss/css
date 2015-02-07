@@ -56,13 +56,23 @@ result.map // source map object
 
 ### Errors
 
-Errors will have `error.position`, just like [`node.position`](#position). The
-error contains the source position in the message. To get the error message
-without the position use `error.reason`.
+Errors thrown during parsing have the following properties:
+
+- message: `String`. The full error message with the source position.
+- reason: `String`. The error message without position.
+- filename: `String` or `undefined`. The value of `options.source` if
+  passed to `css.parse`. Otherwise `undefined`.
+- line: `Integer`.
+- column: `Integer`.
+- source: `String`. The portion of code that couldn't be parsed.
+
+When parsing with the `silent` option, errors are listed in the
+`parsingErrors` property of the [`stylesheet`](#stylesheet) node instead
+of being thrown.
 
 If you create any errors in plugins such as in
-[rework](https://github.com/reworkcss/rework), you __must__ set the `position`
-as well for consistency.
+[rework](https://github.com/reworkcss/rework), you __must__ set the same
+properties for consistency.
 
 ## AST
 
@@ -114,6 +124,8 @@ The root node returned by `css.parse`.
 - stylesheet: `Object`:
   - rules: `Array` of nodes with the types `rule`, `comment` and any of the
     at-rule types.
+  - parsingErrors: `Array` of `Error`s. Errors collected during parsing when
+    option `silent` is true.
 
 #### rule
 
