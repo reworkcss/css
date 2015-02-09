@@ -32,6 +32,7 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 
 `options`:
 
+- indent: the string used to indent the output. Defaults to two spaces.
 - compress: omit comments and extraneous whitespace.
 - sourcemap: return a sourcemap along with the CSS output. Using the `source`
   option of `css.parse` is strongly recommended when creating a source map.
