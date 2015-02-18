@@ -1,6 +1,7 @@
-Next
+2.2.0 / 2014-02-18
 ====
 
+ * add `parsingErrors` to list errors when parsing with `silent: true`
  * accept EOL characters and all other whitespace characters in `@` rules such
    as `@media`
 
