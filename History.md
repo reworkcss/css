@@ -1,5 +1,10 @@
+2.2.1 / 2015-06-17
+==================
+
+ * fix parsing escaped quotes in quoted strings
+
 2.2.0 / 2015-02-18
-====
+==================
 
  * add `parsingErrors` to list errors when parsing with `silent: true`
  * accept EOL characters and all other whitespace characters in `@` rules such
