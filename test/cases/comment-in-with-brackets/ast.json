@@ -1,0 +1,91 @@
+{
+    "type": "stylesheet",
+    "stylesheet": {
+        "parsingErrors": [],
+        "rules": [
+            {
+                "declarations": [
+                    {
+                        "position": {
+                            "end": {
+                                "column": 20,
+                                "line": 2
+                            },
+                            "source": "input.css",
+                            "start": {
+                                "column": 5,
+                                "line": 2
+                            }
+                        },
+                        "property": "color",
+                        "type": "declaration",
+                        "value": "12px"
+                    },
+                    {
+                        "position": {
+                            "end": {
+                                "column": 67,
+                                "line": 3
+                            },
+                            "source": "input.css",
+                            "start": {
+                                "column": 5,
+                                "line": 3
+                            }
+                        },
+                        "property": "padding",
+                        "type": "declaration",
+                        "value": "1px  2px  3px"
+                    },
+                    {
+                        "position": {
+                            "end": {
+                                "column": 24,
+                                "line": 4
+                            },
+                            "source": "input.css",
+                            "start": {
+                                "column": 5,
+                                "line": 4
+                            }
+                        },
+                        "property": "border",
+                        "type": "declaration",
+                        "value": "solid"
+                    },
+                    {
+                        "position": {
+                            "end": {
+                                "column": 50,
+                                "line": 4
+                            },
+                            "source": "input.css",
+                            "start": {
+                                "column": 26,
+                                "line": 4
+                            }
+                        },
+                        "property": "border-top",
+                        "type": "declaration",
+                        "value": "none\\9"
+                    }
+                ],
+                "position": {
+                    "end": {
+                        "column": 2,
+                        "line": 5
+                    },
+                    "source": "input.css",
+                    "start": {
+                        "column": 1,
+                        "line": 1
+                    }
+                },
+                "selectors": [
+                    "a"
+                ],
+                "type": "rule"
+            }
+        ]
+    }
+}
