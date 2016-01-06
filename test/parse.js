@@ -8,6 +8,8 @@ describe('parse(str)', function() {
       source: 'booty.css'
     });
 
+    ast.stylesheet.source.should.equal('booty.css');
+
     var position = ast.stylesheet.rules[0].position;
     position.start.should.be.ok;
     position.end.should.be.ok;
@@ -53,7 +55,7 @@ describe('parse(str)', function() {
   });
 
   it('should list the parsing errors and continue parsing', function() {
-    var result = parse('foo { color= red; } bar { color: blue; } baz {}} boo { display: none}', { 
+    var result = parse('foo { color= red; } bar { color: blue; } baz {}} boo { display: none}', {
       silent: true,
       source: 'foo.css'
     });
