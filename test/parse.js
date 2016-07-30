@@ -76,6 +76,22 @@ describe('parse(str)', function() {
 
   });
 
+  it('should handle invalid extra closing brace', function() {
+    var result = parse('foo { color: red; }} bar { color: blue; }', {
+      silent: true,
+      source: 'foo.css'
+    });
+
+    var rules = result.stylesheet.rules;
+    rules.length.should.equal(2);
+
+    var errors = result.stylesheet.parsingErrors;
+    errors.length.should.equal(1);
+
+    errors[0].line.should.equal(1);
+    errors[0].column.should.equal(20);
+  });
+
   it('should set parent property', function() {
     var result = parse(
       'thing { test: value; }\n' +
