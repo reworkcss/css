@@ -17,13 +17,13 @@
 }
 
 @page {
-	size: 210mm 279mm;
+  size: 210mm 279mm;
 
-	@top-left {
-		padding-top: 0;
-	}
+  @top-left {
+    padding-top: 0;
+  }
 
-	@top-right {
-		content: "foo";
-	}
+  @top-right {
+    content: "foo";
+  }
 }

@@ -12,3 +12,17 @@
 @page :left {
   margin-left: 5cm;
 }
+
+@page named-page {
+  size: A4 landscape;
+}
+
+@page {
+  size: 210mm 279mm;
+  @top-left {
+    padding-top: 0;
+  }
+  @top-right {
+    content: "foo";
+  }
+}
