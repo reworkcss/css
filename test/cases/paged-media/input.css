@@ -22,4 +22,8 @@
 	@top-left {
 		padding-top: 0;
 	}
+
+	@top-right {
+		content: "foo";
+	}
 }
