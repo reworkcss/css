@@ -1,6 +1,7 @@
 {
   "type": "stylesheet",
   "stylesheet": {
+    "source": "input.css",
     "rules": [
       {
         "type": "comment",
@@ -135,7 +136,142 @@
           },
           "source": "input.css"
         }
+      },
+      {
+        "type": "page",
+        "selectors": [
+          "named-page"
+        ],
+        "declarations": [
+          {
+            "type": "declaration",
+            "property": "size",
+            "value": "A4 landscape",
+            "position": {
+              "start": {
+                "line": 16,
+                "column": 3
+              },
+              "end": {
+                "line": 16,
+                "column": 21
+              },
+              "source": "input.css"
+            }
+          }
+        ],
+        "position": {
+          "start": {
+            "line": 15,
+            "column": 1
+          },
+          "end": {
+            "line": 17,
+            "column": 2
+          },
+          "source": "input.css"
+        }
+      },
+      {
+        "type": "page",
+        "selectors": [],
+        "declarations": [
+          {
+            "type": "declaration",
+            "property": "size",
+            "value": "210mm 279mm",
+            "position": {
+              "start": {
+                "line": 20,
+                "column": 3
+              },
+              "end": {
+                "line": 20,
+                "column": 20
+              },
+              "source": "input.css"
+            }
+          },
+          {
+            "type": "margin-box",
+            "name": "top-left",
+            "declarations": [
+              {
+                "type": "declaration",
+                "property": "padding-top",
+                "value": "0",
+                "position": {
+                  "start": {
+                    "line": 23,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 23,
+                    "column": 19
+                  },
+                  "source": "input.css"
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 22,
+                "column": 3
+              },
+              "end": {
+                "line": 24,
+                "column": 4
+              },
+              "source": "input.css"
+            }
+          },
+          {
+            "type": "margin-box",
+            "name": "top-right",
+            "declarations": [
+              {
+                "type": "declaration",
+                "property": "content",
+                "value": "\"foo\"",
+                "position": {
+                  "start": {
+                    "line": 27,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 27,
+                    "column": 19
+                  },
+                  "source": "input.css"
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 26,
+                "column": 3
+              },
+              "end": {
+                "line": 28,
+                "column": 4
+              },
+              "source": "input.css"
+            }
+          }
+        ],
+        "position": {
+          "start": {
+            "line": 19,
+            "column": 1
+          },
+          "end": {
+            "line": 29,
+            "column": 2
+          },
+          "source": "input.css"
+        }
       }
-    ]
+    ],
+    "parsingErrors": []
   }
 }
