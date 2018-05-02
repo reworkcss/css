@@ -1,6 +1,6 @@
 {
   "name": "css",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "CSS parser / stringifier",
   "main": "index",
   "files": [
