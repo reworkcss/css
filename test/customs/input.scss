@@ -1,0 +1,15 @@
+:host {
+  --test-margin: 30px;
+  --test-padding: 20px;
+}
+
+.test-custom {
+  margin: 20px;
+  test {
+    margin: var(--margin, 5px 10px);
+  }
+
+  .p {
+    color: red;
+  }
+}
