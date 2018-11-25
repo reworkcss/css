@@ -1,0 +1,8 @@
+$a-variable: blue;
+$c-variable: green;
+$margin: 0 10px 0 20px;
+
+:host {
+  $b-variable: red;
+  $d-variable: $a-variable;
+}

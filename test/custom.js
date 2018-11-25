@@ -5,16 +5,16 @@ var parse = require('../').parse;
 var customs = fs.readdirSync(path.join(__dirname, 'customs'));
 customs.forEach(function(name) {
   describe('customs/' + name, function() {
-    var dir = path.join(__dirname, 'customs');
+    var dir = path.join(__dirname, 'customs', name);
     var inputFile = path.join(dir, 'input.scss');
 
-    it('should parse the file', function() {
+    it('should match ast.json', function() {
       var ast = parseInput();
-      console.log('ast', ast.stylesheet.rules[1].declarations);
+      console.log('ast', JSON.stringify(ast));
     });
 
     function parseInput() {
-      return parse(readFile(inputFile), { source: 'input.css' });
+      return parse(readFile(inputFile), { source: 'input.scss' });
     }
   });
 });

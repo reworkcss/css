@@ -67,7 +67,7 @@ describe('parse(str)', function() {
     rules.length.should.be.equal(3);
 
     var errors = result.stylesheet.parsingErrors;
-    errors.length.should.equal(1);
+    errors.length.should.equal(2);
 
     errors[0].should.have.a.property('message');
     errors[0].should.have.a.property('reason');

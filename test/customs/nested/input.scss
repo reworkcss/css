@@ -5,11 +5,19 @@
 
 .test-custom {
   margin: 20px;
-  test {
+  &__test {
     margin: var(--margin, 5px 10px);
   }
 
   .p {
     color: red;
+  }
+
+  #test {
+    padding: 10px;
+  }
+
+  span {
+    zoom: 1;
   }
 }
