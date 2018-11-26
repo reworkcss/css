@@ -3,4 +3,5 @@
   margin: var('blue', blue);
   margin: var('green');
   --margin: 0 10px 0 10px;
+  transition: all var(--cx-transition-time);
 }
