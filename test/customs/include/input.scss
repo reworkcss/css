@@ -1,0 +1,9 @@
+@import 'test';
+@import '../host/input';
+
+$color: blue;
+
+:host {
+  $test: red;
+  @include test();
+}
