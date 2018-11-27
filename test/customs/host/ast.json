@@ -38,7 +38,7 @@
             }
           },
           {
-            "type": "declaration",
+            "type": "custom property",
             "property": "--margin",
             "value": "0 10px 0 10px",
             "position": {
