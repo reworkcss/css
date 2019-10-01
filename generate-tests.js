@@ -1,4 +1,4 @@
-// Generates missing output source and AST files for the test cases
+// Generates missing output source and AST files for the test cases for all the possible iterations
 // IMPORTANT: Always verify the generated files when using this!
 
 var fs = require('fs');
