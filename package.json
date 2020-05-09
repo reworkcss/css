@@ -9,16 +9,15 @@
     "Readme.md"
   ],
   "dependencies": {
-    "inherits": "^2.0.3",
-    "source-map": "^0.6.1",
-    "source-map-resolve": "^0.5.2",
-    "urix": "^0.1.0"
+    "inherits": "^2.0.4",
+    "source-map": "^0.7.3",
+    "source-map-resolve": "^0.6.0"
   },
   "devDependencies": {
-    "mocha": "^1.21.3",
-    "should": "^4.0.4",
+    "bytes": "^1.0.0",
     "matcha": "^0.5.0",
-    "bytes": "^1.0.0"
+    "mocha": "^1.21.3",
+    "should": "^4.0.4"
   },
   "scripts": {
     "benchmark": "matcha",
