@@ -11,8 +11,7 @@
   "dependencies": {
     "inherits": "^2.0.4",
     "source-map": "^0.6.1",
-    "source-map-resolve": "^0.6.0",
-    "urix": "^0.1.0"
+    "source-map-resolve": "^0.6.0"
   },
   "devDependencies": {
     "mocha": "^8.0.1",
