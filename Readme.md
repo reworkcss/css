@@ -55,7 +55,7 @@ result.code // string with CSS
 result.map // source map object
 ```
 
-### Errors
+### Errors may come durig parsing
 
 Errors thrown during parsing have the following properties:
 
