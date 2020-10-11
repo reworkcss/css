@@ -22,10 +22,10 @@ Accepts a CSS string and returns an AST `object`. There are no required options.
 
 `options`:
 
-**Key**  | **Type** | **Default** | **Description**
-:--      | :--      | :--         | :--
-`silent` | Boolean  | `false`     | Silently fail on parse errors if true. Throws if false.
-`source` | String   | `undefined` | Path to your CSS file. Makes errors and source maps more helpful, by letting them know where code comes from.
+**Key**  | **Type**  | **Default** | **Description**
+:--      | :--       | :--         | :--
+`silent` | `Boolean` | `false`     | Silently fail on parse errors if true. Throws if false.
+`source` | `String`  | `undefined` | Path to your CSS file. Makes errors and source maps more helpful, by letting them know where code comes from.
 
 ### css.stringify(object, [options])
 
@@ -33,12 +33,12 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string. Ther
 
 `options`:
 
-**Key**           | **Type**          | **Default** | **Description**
-:--               | :--               | :--         | :--
-`indent`          | String            | Two spaces  | The string used to indent the output.
-`compress`        | Boolean           | `false`     | Omit comments and extraneous whitespace if true.
-`sourcemap`       | Boolean or String | `false`     | Return a sourcemap along with the CSS output if true. Using the `source` option of `css.parse` is strongly recommended when creating a source map. Specify `sourcemap: 'generator'` to return the SourceMapGenerator object instead of serializing the source map.
-`inputSourcemaps` | Boolean           | `true`      | Reads any source maps referenced by the input files when generating the output source map if true. File system access may be required for reading the referenced source maps if true.
+**Key**           | **Type**              | **Default** | **Description**
+:--               | :--                   | :--         | :--
+`indent`          | `String`              | Two spaces  | The string used to indent the output.
+`compress`        | `Boolean`             | `false`     | Omit comments and extraneous whitespace if true.
+`sourcemap`       | `Boolean` or `String` | `false`     | Return a sourcemap along with the CSS output if true. Using the `source` option of `css.parse` is strongly recommended when creating a source map. Specify `sourcemap: 'generator'` to return the SourceMapGenerator object instead of serializing the source map.
+`inputSourcemaps` | `Boolean`             | `true`      | Reads any source maps referenced by the input files when generating the output source map if true. File system access may be required for reading the referenced source maps if true.
 
 ### Example
 
