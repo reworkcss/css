@@ -18,30 +18,27 @@ css.stringify(obj, options);
 
 ### css.parse(code, [options])
 
-Accepts a CSS string and returns an AST `object`.
+Accepts a CSS string and returns an AST `object`. There are no required options.
 
 `options`:
 
-- silent: silently fail on parse errors.
-- source: the path to the file containing `css`. Makes errors and source
-  maps more helpful, by letting them know where code comes from.
+**Key**  | **Type** | **Default** | **Description**
+:--      | :--      | :--         | :--
+`silent` | Boolean  | `false`     | Silently fail on parse errors if true. Throws if false.
+`source` | String   | `undefined` | Path to your CSS file. Makes errors and source maps more helpful, by letting them know where code comes from.
 
 ### css.stringify(object, [options])
 
-Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
+Accepts an AST `object` (as `css.parse` produces) and returns a CSS string. There are no required options.
 
 `options`:
 
-- indent: the string used to indent the output. Defaults to two spaces.
-- compress: omit comments and extraneous whitespace.
-- sourcemap: return a sourcemap along with the CSS output. Using the `source`
-  option of `css.parse` is strongly recommended when creating a source map.
-  Specify `sourcemap: 'generator'` to return the SourceMapGenerator object
-  instead of serializing the source map.
-- inputSourcemaps: (enabled by default, specify `false` to disable) reads any
-  source maps referenced by the input files when generating the output source
-  map. When enabled, file system access may be required for reading the
-  referenced source maps.
+**Key**           | **Type**          | **Default** | **Description**
+:--               | :--               | :--         | :--
+`indent`          | String            | Two spaces  | The string used to indent the output.
+`compress`        | Boolean           | `false`     | Omit comments and extraneous whitespace if true.
+`sourcemap`       | Boolean or String | `false`     | Return a sourcemap along with the CSS output if true. Using the `source` option of `css.parse` is strongly recommended when creating a source map. Specify `sourcemap: 'generator'` to return the SourceMapGenerator object instead of serializing the source map.
+`inputSourcemaps` | Boolean           | `true`      | Reads any source maps referenced by the input files when generating the output source map if true. File system access may be required for reading the referenced source maps if true.
 
 ### Example
 
@@ -59,13 +56,14 @@ result.map // source map object
 
 Errors thrown during parsing have the following properties:
 
-- message: `String`. The full error message with the source position.
-- reason: `String`. The error message without position.
-- filename: `String` or `undefined`. The value of `options.source` if
-  passed to `css.parse`. Otherwise `undefined`.
-- line: `Integer`.
-- column: `Integer`.
-- source: `String`. The portion of code that couldn't be parsed.
+**Key**    | **Type**                | **Description**
+:--        | :--                     | :--
+`message`  | `String`                | The full error message with the source position.
+`reason`   | `String`                | The error message without position.
+`filename` | `String` or `undefined` | The value of `options.source` if passed to `css.parse`. Otherwise `undefined`.
+`line`     | `Integer`               |
+`column`   | `Integer`               |
+`source`   | `String`                | The portion of code that couldn't be parsed.
 
 When parsing with the `silent` option, errors are listed in the
 `parsingErrors` property of the [`stylesheet`](#stylesheet) node instead
