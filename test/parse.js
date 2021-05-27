@@ -105,4 +105,16 @@ describe('parse(str)', function() {
     decl.parent.should.equal(rule);
   });
 
+  it('should not throw if there is an { in a comment in a property value', function () {
+    should(function() {
+      parse('thing { color: red /* { */; } ');
+    }).not.throw();
+  });
+
+  it('should not throw if there is an } in a comment in a property value', function () {
+    should(function() {
+      parse('thing { color: red /* } */; } ');
+    }).not.throw();
+  });
+
 });
