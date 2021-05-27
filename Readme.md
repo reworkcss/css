@@ -83,7 +83,7 @@ Interactively explore the AST with <http://iamdustan.com/reworkcss_ast_explorer/
 
 All nodes have the following properties.
 
-#### position
+#### Position
 
 Information about the position in the source string that corresponds to
 the node.
