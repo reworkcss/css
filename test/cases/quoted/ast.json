@@ -11,7 +11,7 @@
           {
             "type": "declaration",
             "property": "background",
-            "value": "url('some;stuff;here') 50% 50% no-repeat",
+            "value": "url('some;stuff();here') 50% 50% no-repeat",
             "position": {
               "start": {
                 "line": 2,
@@ -19,7 +19,7 @@
               },
               "end": {
                 "line": 2,
-                "column": 55
+                "column": 57
               },
               "source": "input.css"
             }
