@@ -1,0 +1,78 @@
+{
+  "type": "stylesheet",
+  "stylesheet": {
+    "rules": [
+      {
+        "type": "rule",
+        "selectors": [
+          ".foo"
+        ],
+        "declarations": [
+          {
+            "type": "declaration",
+            "property": "background-image",
+            "value": "url(\"data:image/svg+xml;charset=utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220 0 13 9%22%20preserveAspectRatio%3D%22none%22%3E%0A%09%3Cpath%20fill%3D%22rgba(5,178,189,.99)%22%20d%3D%22M8.53 0L7.19 1.352l2.18 2.193H0v1.912h9.37L7.19 7.65l1.34 1.352 4.47-4.5z%22%20%2F%3E%0A%3C%2Fsvg%3E\")",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 366
+              },
+              "source": "input.css"
+            }
+          }
+        ],
+        "position": {
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 367
+          },
+          "source": "input.css"
+        }
+      },
+      {
+        "type": "rule",
+        "selectors": [
+          ".bar"
+        ],
+        "declarations": [
+          {
+            "type": "declaration",
+            "property": "background-image",
+            "value": "url(\"data:image/svg+xml;charset=utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220 0 25 21%22%20preserveAspectRatio%3D%22none%22%3E%0A%09%3Cpath%20fill%3D%22rgba(5,46,73,.99)%22%20d%3D%22M7.5,15.6l-4.8-4.9L0,13.4l6.4,6.5l0,0L7.5,21l18-18.3L22.8,0L7.5,15.6z%22%20%2F%3E%0A%3C%2Fsvg%3E\")",
+            "position": {
+              "start": {
+                "line": 1,
+                "column": 372
+              },
+              "end": {
+                "line": 1,
+                "column": 727
+              },
+              "source": "input.css"
+            }
+          }
+        ],
+        "position": {
+          "start": {
+            "line": 1,
+            "column": 367
+          },
+          "end": {
+            "line": 1,
+            "column": 728
+          },
+          "source": "input.css"
+        }
+      }
+    ],
+    "parsingErrors": []
+  }
+}
