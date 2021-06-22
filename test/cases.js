@@ -12,7 +12,7 @@ cases.forEach(function(name) {
     const outputFile = readFile(path.join(dir, 'output.css'));
     const compressedFile = readFile(path.join(dir, 'compressed.css'));
 
-    const parsedFile = parse(inputFile, { source: 'input.css' });
+    const parsedFile = parseFile(inputFile);
 
     it('should match ast.json', function() {
       parsedFile.should.containDeep(JSON.parse(astFile));
@@ -30,6 +30,15 @@ cases.forEach(function(name) {
 
   });
 });
+
+function parseFile(file){
+  try {
+    return parse(file, {source: 'input.css'});
+  } catch (e){
+    console.error("Error in Parsing",e);
+    return {};
+  }
+}
 
 function readFile(file) {
   return fs.readFileSync(file, 'utf8')
