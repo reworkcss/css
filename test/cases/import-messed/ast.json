@@ -76,6 +76,21 @@
           },
           "source": "input.css"
         }
+      },
+      {
+        "type": "import",
+        "import": "url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700')",
+        "position": {
+          "start": {
+            "line": 10,
+            "column": 29
+          },
+          "end": {
+            "line": 10,
+            "column": 116
+          },
+          "source": "input.css"
+        }
       }
     ]
   }

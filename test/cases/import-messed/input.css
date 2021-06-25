@@ -5,3 +5,6 @@
   @import "common.css" screen, projection  ;
 
   @import url('landscape.css') screen and (orientation:landscape);
+
+
+                            @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700');

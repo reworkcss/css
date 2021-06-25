@@ -1,16 +1,16 @@
-var parse = require('../').parse;
-var should = require('should');
+const parse = require('../').parse;
+const should = require('should');
 
 describe('parse(str)', function() {
   it('should save the filename and source', function() {
-    var css = 'booty {\n  size: large;\n}\n';
-    var ast = parse(css, {
+    const css = 'booty {\n  size: large;\n}\n';
+    const ast = parse(css, {
       source: 'booty.css'
     });
 
     ast.stylesheet.source.should.equal('booty.css');
 
-    var position = ast.stylesheet.rules[0].position;
+    const position = ast.stylesheet.rules[0].position;
     position.start.should.be.ok;
     position.end.should.be.ok;
     position.source.should.equal('booty.css');
@@ -55,15 +55,15 @@ describe('parse(str)', function() {
   });
 
   it('should list the parsing errors and continue parsing', function() {
-    var result = parse('foo { color= red; } bar { color: blue; } baz {}} boo { display: none}', {
+    const result = parse('foo { color= red; } bar { color: blue; } baz {}} boo { display: none}', {
       silent: true,
       source: 'foo.css'
     });
 
-    var rules = result.stylesheet.rules;
+    const rules = result.stylesheet.rules;
     rules.length.should.be.above(2);
 
-    var errors = result.stylesheet.parsingErrors;
+    const errors = result.stylesheet.parsingErrors;
     errors.length.should.equal(2);
 
     errors[0].should.have.a.property('message');
@@ -77,23 +77,23 @@ describe('parse(str)', function() {
   });
 
   it('should set parent property', function() {
-    var result = parse(
-      'thing { test: value; }\n' +
-      '@media (min-width: 100px) { thing { test: value; } }');
+    const result = parse(
+        'thing { test: value; }\n' +
+        '@media (min-width: 100px) { thing { test: value; } }');
 
     should(result.parent).equal(null);
 
-    var rules = result.stylesheet.rules;
+    const rules = result.stylesheet.rules;
     rules.length.should.equal(2);
 
-    var rule = rules[0];
+    let rule = rules[0];
     rule.parent.should.equal(result);
     rule.declarations.length.should.equal(1);
 
-    var decl = rule.declarations[0];
+    let decl = rule.declarations[0];
     decl.parent.should.equal(rule);
 
-    var media = rules[1];
+    const media = rules[1];
     media.parent.should.equal(result);
     media.rules.length.should.equal(1);
 

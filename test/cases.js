@@ -1,44 +1,47 @@
-var fs = require('fs');
-var path = require('path');
-var parse = require('../').parse;
-var stringify = require('../').stringify;
+const fs = require('fs');
+const path = require('path');
+const parse = require('../').parse;
+const stringify = require('../').stringify;
 
-var cases = fs.readdirSync(path.join(__dirname, 'cases'));
+const cases = fs.readdirSync(path.join(__dirname, 'cases'));
 cases.forEach(function(name) {
   describe('cases/' + name, function() {
-    var dir = path.join(__dirname, 'cases', name);
-    var inputFile = path.join(dir, 'input.css');
-    var astFile = path.join(dir, 'ast.json');
-    var outputFile = path.join(dir, 'output.css');
-    var compressedFile = path.join(dir, 'compressed.css');
+    const dir = path.join(__dirname, 'cases', name);
+    const inputFile = readFile(path.join(dir, 'input.css'));
+    const astFile = readFile(path.join(dir, 'ast.json'));
+    const outputFile = readFile(path.join(dir, 'output.css'));
+    const compressedFile = readFile(path.join(dir, 'compressed.css'));
+
+    const parsedFile = parseFile(inputFile);
 
     it('should match ast.json', function() {
-      var ast = parseInput();
-      ast.should.containDeep(JSON.parse(readFile(astFile)));
+      parsedFile.should.containDeep(JSON.parse(astFile));
     });
 
     it('should match output.css', function() {
-      var output = stringify(parseInput());
-      output.should.equal(readFile(outputFile).trim());
+      const stringOutput = stringify(parsedFile)
+      stringOutput.should.equal(outputFile.trim());
     });
 
     it('should match compressed.css', function() {
-      var compressed = stringify(parseInput(), { compress: true });
-      compressed.should.equal(readFile(compressedFile));
+      const compressedOutput = stringify(parsedFile,{ compress: true })
+      compressedOutput.should.equal(compressedFile);
     });
 
-    function parseInput() {
-      return parse(readFile(inputFile), { source: 'input.css' });
-    }
   });
 });
 
-function readFile(file) {
-  var src = fs.readFileSync(file, 'utf8');
-  // normalize line endings
-  src = src.replace(/\r\n/, '\n');
-  // remove trailing newline
-  src = src.replace(/\n$/, '');
+function parseFile(file){
+  try {
+    return parse(file, {source: 'input.css'});
+  } catch (e){
+    console.error("Error in Parsing",e);
+    return {};
+  }
+}
 
-  return src;
+function readFile(file) {
+  return fs.readFileSync(file, 'utf8')
+      .replace(/\r\n/g, '\n')// normalize line endings
+      .replace(/\n$/g, '');// remove trailing newline
 }
