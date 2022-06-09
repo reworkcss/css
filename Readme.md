@@ -1,4 +1,6 @@
-# css [![Build Status](https://travis-ci.org/reworkcss/css.svg?branch=master)](https://travis-ci.org/reworkcss/css)
+# @adobe/css-tools
+
+> This is a fork of the npm css package due to low maintenance
 
 CSS parser / stringifier.
 
@@ -34,14 +36,6 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 
 - indent: the string used to indent the output. Defaults to two spaces.
 - compress: omit comments and extraneous whitespace.
-- sourcemap: return a sourcemap along with the CSS output. Using the `source`
-  option of `css.parse` is strongly recommended when creating a source map.
-  Specify `sourcemap: 'generator'` to return the SourceMapGenerator object
-  instead of serializing the source map.
-- inputSourcemaps: (enabled by default, specify `false` to disable) reads any
-  source maps referenced by the input files when generating the output source
-  map. When enabled, file system access may be required for reading the
-  referenced source maps.
 
 ### Example
 
@@ -49,11 +43,6 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 var ast = css.parse('body { font-size: 12px; }', { source: 'source.css' });
 
 var css = css.stringify(ast);
-
-var result = css.stringify(ast, { sourcemap: true });
-result.code // string with CSS
-result.map // source map object
-```
 
 ### Errors
 

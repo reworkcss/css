@@ -1,3 +1,12 @@
+4.0.0 / 2022-06-09
+==================
+
+ * Adobe fork of css into @adobe/css
+ * Convert the project into typescript
+ * Optimization of performance (+25% in some cases)
+ * Update all deps
+ * Remove sourcemap support
+
 2.2.1 / 2015-06-17
 ==================
 

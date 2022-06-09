@@ -1,0 +1,40 @@
+name: version-bump-publish
+on:
+  workflow_dispatch:
+    inputs:
+      level:
+        description: "<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease"
+        required: true
+        default: "patch"
+      tag:
+        description: "The tag to publish to."
+        required: false
+        default: "latest"
+jobs:
+  checkout:
+    name: checkout
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ADOBE_BOT_GITHUB_TOKEN }}
+      - name: Configure CI Git User
+        run: |
+          git config user.name adobe-bot
+          git config user.email grp-opensourceoffice@adobe.com
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: |
+          npm install
+          npm test
+      - name: bump and pub
+        if: ${{ github.event.inputs.level != '' }}
+        run: |
+          npm version ${{ github.event.inputs.level }}
+          git push
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.ADOBE_BOT_NPM_TOKEN }}
+          tag: ${{ github.event.inputs.tag }}
+          access: "public"

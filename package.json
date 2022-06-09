@@ -1,33 +1,49 @@
 {
-  "name": "css",
-  "version": "3.0.0",
+  "name": "@adobe/css-tools",
+  "version": "4.0.0-rc.1",
   "description": "CSS parser / stringifier",
-  "main": "index",
+  "main": "dist/umd/index.js",
+  "module": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
   "files": [
-    "index.js",
-    "lib",
+    "dist",
     "Readme.md"
   ],
-  "dependencies": {
-    "inherits": "^2.0.4",
-    "source-map": "^0.6.1",
-    "source-map-resolve": "^0.6.0"
-  },
   "devDependencies": {
-    "mocha": "^8.0.1",
-    "should": "^13.2.3",
-    "matcha": "^0.7.0",
-    "bytes": "^3.1.0"
+    "@types/benchmark": "^2.1.1",
+    "@types/bytes": "^3.1.1",
+    "@types/jest": "^27.5.1",
+    "@types/node": "^14.11.2",
+    "benchmark": "^2.1.4",
+    "bytes": "^3.1.0",
+    "gts": "^3.1.0",
+    "jest": "^28.1.0",
+    "rollup": "^2.75.6",
+    "ts-jest": "^28.0.3",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
   },
   "scripts": {
-    "benchmark": "matcha",
-    "test": "mocha --require should --reporter spec test/*.js"
+    "benchmark": "ts-node benchmark/index.ts",
+    "test": "jest",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "build": "npm run build:cjs && npm run build:umd",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs",
+    "build:umd": "npx rollup dist/cjs/index.js --format umd --name cssTools --sourcemap --file dist/umd/index.js",
+    "fix": "gts fix",
+    "prepare": "npm run build",
+    "pretest": "npm run build",
+    "posttest": "npm run lint"
   },
   "author": "TJ Holowaychuk <tj@vision-media.ca>",
+  "contributors": [
+    "Jean-Philippe Zolesio <holblin@gmail.com>"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reworkcss/css.git"
+    "url": "https://github.com/adobe/css-tools.git"
   },
   "keywords": [
     "css",
