@@ -20,7 +20,7 @@
     "jest": "^28.1.0",
     "rollup": "^2.75.6",
     "ts-jest": "^28.0.4",
-    "ts-node": "^10.8.0",
+    "ts-node": "^10.8.1",
     "typescript": "^4.7.3"
   },
   "scripts": {
