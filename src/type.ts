@@ -25,7 +25,7 @@ export type CssCommonAST = {
 };
 
 export type CssCommonPositionAST = CssCommonAST & {
-  position: Position;
+  position?: Position;
   parent?: unknown;
 };
 
@@ -34,7 +34,7 @@ export type CssStylesheetAST = CssCommonAST & {
   stylesheet: {
     source?: string;
     rules: Array<CssAtRuleAST>;
-    parsingErrors: Array<CssParseError>;
+    parsingErrors?: Array<CssParseError>;
   };
 };
 

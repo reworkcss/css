@@ -12,9 +12,9 @@ describe('parse(str)', () => {
     expect(ast.stylesheet.source).toBe('booty.css');
 
     const position = ast.stylesheet.rules[0].position;
-    expect(position.start).toBeDefined();
-    expect(position.end).toBeDefined();
-    expect(position.source).toBe('booty.css');
+    expect(position?.start).toBeDefined();
+    expect(position?.end).toBeDefined();
+    expect(position?.source).toBe('booty.css');
     // expect(position.content).toBe(css);
   });
 
