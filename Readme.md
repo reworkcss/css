@@ -43,6 +43,7 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 var ast = css.parse('body { font-size: 12px; }', { source: 'source.css' });
 
 var css = css.stringify(ast);
+```
 
 ### Errors
 
