@@ -1,3 +1,8 @@
+4.0.1 / 2022-08-03
+==================
+
+ * Change globalThis configuration for webpack so UMD module could be used in nodejs (jest-dom)
+
 4.0.0 / 2022-06-09
 ==================
 

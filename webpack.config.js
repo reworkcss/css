@@ -50,6 +50,7 @@ const umd = Object.assign({}, baseConfig, {
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist/umd'),
     clean: process.env.NODE_ENV === 'prod',
+    globalObject: 'this',
   },
 });
 
