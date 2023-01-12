@@ -1,0 +1,4 @@
+div[data-value='foo'],
+div[data-value='bar'] {
+  color: 'black';
+}

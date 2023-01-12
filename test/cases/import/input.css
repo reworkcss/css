@@ -3,3 +3,4 @@
 @import 'custom.css';
 @import "common.css" screen, projection;
 @import url('landscape.css') screen and (orientation:landscape);
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');

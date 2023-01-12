@@ -76,6 +76,21 @@
           },
           "source": "input.css"
         }
+      },
+      {
+        "type": "import",
+        "import": "url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap')",
+        "position": {
+          "start": {
+            "line": 6,
+            "column": 1
+          },
+          "end": {
+            "line": 6,
+            "column": 115
+          },
+          "source": "input.css"
+        }
       }
     ]
   }
