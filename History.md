@@ -1,3 +1,14 @@
+4.1.0 / 2023-01-25
+==================
+
+ * Support ESM Modules
+
+4.0.2 / 2023-01-12
+==================
+
+ * #71 : @import does not work if url contains ';'
+ * #77 : Regression in selector parsing: Attribute selectors not parsed correctly
+
 4.0.1 / 2022-08-03
 ==================
 

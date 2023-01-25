@@ -6,19 +6,19 @@ CSS parser / stringifier.
 
 ## Installation
 
-    $ npm install css
+    $ npm install @adobe/css-tools
 
 ## Usage
 
 ```js
-var css = require('css');
-var obj = css.parse('body { font-size: 12px; }', options);
-css.stringify(obj, options);
+import { parse, stringify } from '@adobe/css-tools'
+let obj = parse('body { font-size: 12px; }', options);
+let css = stringify(obj, options);
 ```
 
 ## API
 
-### css.parse(code, [options])
+### parse(code, [options])
 
 Accepts a CSS string and returns an AST `object`.
 
@@ -28,7 +28,7 @@ Accepts a CSS string and returns an AST `object`.
 - source: the path to the file containing `css`. Makes errors and source
   maps more helpful, by letting them know where code comes from.
 
-### css.stringify(object, [options])
+### stringify(object, [options])
 
 Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 
@@ -40,9 +40,9 @@ Accepts an AST `object` (as `css.parse` produces) and returns a CSS string.
 ### Example
 
 ```js
-var ast = css.parse('body { font-size: 12px; }', { source: 'source.css' });
+var ast = parse('body { font-size: 12px; }', { source: 'source.css' });
 
-var css = css.stringify(ast);
+var css = stringify(ast);
 ```
 
 ### Errors
