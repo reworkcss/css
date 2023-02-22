@@ -1,0 +1,27 @@
+@container summary (min-width: 400px) {
+  @container (min-width: 800px) {
+    @container (min-width: 900px) {
+      @layer module {
+        .warning {
+          text-align: left;
+          background-color: yellow;
+          color: white;
+        }
+      }
+
+      @supports (display: flex) or (display: box) {
+        /* flex above */
+
+        .flex {
+          /* flex inside */
+          display: box;
+          display: flex;
+        }
+
+        div {
+          something: else;
+        }
+      }
+    }
+  }
+}

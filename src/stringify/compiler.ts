@@ -3,6 +3,7 @@ import {
   CssCharsetAST,
   CssCommentAST,
   CssCommonPositionAST,
+  CssContainerAST,
   CssCustomMediaAST,
   CssDeclarationAST,
   CssDocumentAST,
@@ -11,6 +12,7 @@ import {
   CssImportAST,
   CssKeyframeAST,
   CssKeyframesAST,
+  CssLayerAST,
   CssMediaAST,
   CssNamespaceAST,
   CssPageAST,
@@ -64,6 +66,8 @@ class Compiler {
         return this.declaration(node);
       case CssTypes.comment:
         return this.comment(node);
+      case CssTypes.container:
+        return this.container(node);
       case CssTypes.charset:
         return this.charset(node);
       case CssTypes.document:
@@ -80,6 +84,8 @@ class Compiler {
         return this.keyframes(node);
       case CssTypes.keyframe:
         return this.keyframe(node);
+      case CssTypes.layer:
+        return this.layer(node);
       case CssTypes.media:
         return this.media(node);
       case CssTypes.namespace:
@@ -131,6 +137,50 @@ class Compiler {
   }
 
   /**
+   * Visit container node.
+   */
+  container(node: CssContainerAST) {
+    if (this.compress) {
+      return (
+        this.emit('@container ' + node.container, node.position) +
+        this.emit('{') +
+        this.mapVisit(node.rules) +
+        this.emit('}')
+      );
+    }
+    return (
+      this.emit(this.indent() + '@container ' + node.container, node.position) +
+      this.emit(' {\n' + this.indent(1)) +
+      this.mapVisit(node.rules, '\n\n') +
+      this.emit('\n' + this.indent(-1) + this.indent() + '}')
+    );
+  }
+
+  /**
+   * Visit container node.
+   */
+  layer(node: CssLayerAST) {
+    if (this.compress) {
+      return (
+        this.emit('@layer ' + node.layer, node.position) +
+        (node.rules
+          ? this.emit('{') +
+            this.mapVisit(<CssAllNodesAST[]>node.rules) +
+            this.emit('}')
+          : ';')
+      );
+    }
+    return (
+      this.emit(this.indent() + '@layer ' + node.layer, node.position) +
+      (node.rules
+        ? this.emit(' {\n' + this.indent(1)) +
+          this.mapVisit(<CssAllNodesAST[]>node.rules, '\n\n') +
+          this.emit('\n' + this.indent(-1) + this.indent() + '}')
+        : ';')
+    );
+  }
+
+  /**
    * Visit import node.
    */
   import(node: CssImportAST) {
@@ -150,10 +200,10 @@ class Compiler {
       );
     }
     return (
-      this.emit('@media ' + node.media, node.position) +
+      this.emit(this.indent() + '@media ' + node.media, node.position) +
       this.emit(' {\n' + this.indent(1)) +
       this.mapVisit(node.rules, '\n\n') +
-      this.emit(this.indent(-1) + '\n}')
+      this.emit('\n' + this.indent(-1) + this.indent() + '}')
     );
   }
 
@@ -205,10 +255,10 @@ class Compiler {
       );
     }
     return (
-      this.emit('@supports ' + node.supports, node.position) +
+      this.emit(this.indent() + '@supports ' + node.supports, node.position) +
       this.emit(' {\n' + this.indent(1)) +
       this.mapVisit(node.rules, '\n\n') +
-      this.emit(this.indent(-1) + '\n}')
+      this.emit('\n' + this.indent(-1) + this.indent() + '}')
     );
   }
 

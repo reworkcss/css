@@ -228,6 +228,22 @@ The `@supports` at-rule.
 - rules: `Array` of nodes with the types `rule`, `comment` and any of the
   at-rule types.
 
+### container
+
+The `@container` at-rule.
+
+- conatiner: `String`. The part following `@container `.
+- rules: `Array` of nodes with the types `rule`, `comment` and any of the
+  at-rule types.
+
+### layer
+
+The `@layer` at-rule.
+
+- layer: `String`. The part following `@layer `.
+- rules: `Array` of nodes with the types `rule`, `comment` and any of the
+  at-rule types. This may be null, if the rule did not contain any.
+
 ### Example
 
 CSS:

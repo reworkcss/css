@@ -1,0 +1,1 @@
+@layer module, state;@layer state{.warning{background-color:brown;}p{text-align:right;}}@layer module{.warning{text-align:left;background-color:yellow;color:white;}}

@@ -13,16 +13,25 @@ cases.forEach((name: string) => {
 
     it('should match ast.json', () => {
       const ast = parseInput();
+      if (!fs.existsSync(astFile)) {
+        writeFile(astFile, JSON.stringify(ast));
+      }
       expect(ast).toMatchObject(JSON.parse(readFile(astFile)));
     });
 
     it('should match output.css', () => {
       const output = stringify(parseInput());
+      if (!fs.existsSync(outputFile)) {
+        writeFile(outputFile, output);
+      }
       expect(output).toBe(readFile(outputFile).trim());
     });
 
     it('should match compressed.css', () => {
       const compressed = stringify(parseInput(), {compress: true});
+      if (!fs.existsSync(compressedFile)) {
+        writeFile(compressedFile, compressed);
+      }
       expect(compressed).toBe(readFile(compressedFile));
     });
 
@@ -40,4 +49,12 @@ function readFile(file: string) {
   src = src.replace(/\n$/, '');
 
   return src;
+}
+
+function writeFile(file: string, text: string) {
+  // normalize line endings
+  text = text.replace(/\r\n/, '\n');
+  // remove trailing newline
+  text = text.replace(/\n$/, '');
+  fs.writeFileSync(file, text, 'utf8');
 }

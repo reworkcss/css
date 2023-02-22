@@ -5,6 +5,7 @@ import {
   CssCharsetAST,
   CssCommentAST,
   CssCommonPositionAST,
+  CssContainerAST,
   CssCustomMediaAST,
   CssDeclarationAST,
   CssDocumentAST,
@@ -13,6 +14,7 @@ import {
   CssImportAST,
   CssKeyframeAST,
   CssKeyframesAST,
+  CssLayerAST,
   CssMediaAST,
   CssNamespaceAST,
   CssPageAST,
@@ -423,6 +425,68 @@ export const parse = (
   }
 
   /**
+   * Parse container.
+   */
+  function atcontainer(): CssContainerAST | void {
+    const pos = position();
+    const m = match(/^@container *([^{]+)/);
+
+    if (!m) {
+      return;
+    }
+    const container = trim(m[1]);
+
+    if (!open()) {
+      return error("@container missing '{'");
+    }
+
+    const style = comments<CssAtRuleAST>().concat(rules());
+
+    if (!close()) {
+      return error("@container missing '}'");
+    }
+
+    return pos<CssContainerAST>({
+      type: CssTypes.container,
+      container: container,
+      rules: style,
+    });
+  }
+
+  /**
+   * Parse container.
+   */
+  function atlayer(): CssLayerAST | void {
+    const pos = position();
+    const m = match(/^@layer *([^{;@]+)/);
+
+    if (!m) {
+      return;
+    }
+    const layer = trim(m[1]);
+
+    if (!open()) {
+      match(/^[;\s]*/);
+      return pos<CssLayerAST>({
+        type: CssTypes.layer,
+        layer: layer,
+      });
+    }
+
+    const style = comments<CssAtRuleAST>().concat(rules());
+
+    if (!close()) {
+      return error("@layer missing '}'");
+    }
+
+    return pos<CssLayerAST>({
+      type: CssTypes.layer,
+      layer: layer,
+      rules: style,
+    });
+  }
+
+  /**
    * Parse media.
    */
   function atmedia(): CssMediaAST | void {
@@ -626,7 +690,9 @@ export const parse = (
       atdocument() ||
       atpage() ||
       athost() ||
-      atfontface()
+      atfontface() ||
+      atcontainer() ||
+      atlayer()
     );
   }
 
