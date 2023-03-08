@@ -1,7 +1,6 @@
 {
-  "extends": "./node_modules/gts/tsconfig-google.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
     "outDir": "dist/tests",
   },
   "include": [

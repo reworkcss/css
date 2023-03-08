@@ -1,0 +1,13 @@
+{
+  "name": "cjs-project",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "type": "commonjs",
+  "license": "MIT",
+  "dependencies": {
+    "@adobe/css-tools": "file:../../"
+  },
+  "scripts": {
+    "start": "node index.cjs"
+  }
+}

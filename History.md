@@ -1,8 +1,14 @@
+4.3.0 / 2023-03-07
+==================
+
+ * Update build tools
+ * Update exports path and files
+
 4.2.0 / 2023-02-21
 ==================
 
- * Add @container support 
- * Add @layer support 
+ * Add @container support
+ * Add @layer support
 
 4.1.0 / 2023-01-25
 ==================

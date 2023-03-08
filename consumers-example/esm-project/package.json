@@ -1,0 +1,13 @@
+{
+  "name": "esm-project",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "@adobe/css-tools": "file:../../"
+  },
+  "scripts": {
+    "start": "node index.mjs"
+  }
+}
