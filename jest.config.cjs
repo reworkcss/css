@@ -1,11 +1,14 @@
 const ignores = ['/node_modules/', '__mocks__', '/dist/'];
 
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+/** @type {import('jest').Config} */
 module.exports = {
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.test.json',
-    },
+  transform: {
+    '^.+\\.ts$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.test.json',
+      },
+    ],
   },
   preset: 'ts-jest',
   testEnvironment: 'node',
