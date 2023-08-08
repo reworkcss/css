@@ -1,6 +1,6 @@
 {
   "name": "@adobe/css-tools",
-  "version": "4.3.0-rc.1",
+  "version": "4.3.0",
   "description": "CSS parser / stringifier",
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
