@@ -26,7 +26,9 @@ import {
 
 // http://www.w3.org/TR/CSS21/grammar.html
 // https://github.com/visionmedia/css-parse/pull/49#issuecomment-30088027
-const commentre = /\/\*[^*]*\*+([^/*][^*]*\*+)*\//g;
+// New rule => https://www.w3.org/TR/CSS22/syndata.html#comments
+// [^] is equivalent to [.\n\r]
+const commentre = /\/\*[^]*?(?:\*\/|$)/g;
 
 export const parse = (
   css: string,
@@ -204,8 +206,8 @@ export const parse = (
       return;
     }
 
-    // remove comment in selector; [^] is equivalent to [.\n\r]
-    const res = trim(m[0]).replace(/\/\*[^]*?\*\//gm, '');
+    // remove comment in selector;
+    const res = trim(m[0]).replace(commentre, '');
 
     // Optimisation: If there is no ',' no need to split or post-process (this is less costly)
     if (res.indexOf(',') === -1) {
@@ -654,10 +656,10 @@ export const parse = (
     const re = new RegExp(
       '^@' +
         name +
-        '\\s*((:?[^;\'"]|"(?:\\\\"|[^"])*?"|\'(?:\\\\\'|[^\'])*?\')+);'
+        '\\s*((?::?[^;\'"]|"(?:\\\\"|[^"])*?"|\'(?:\\\\\'|[^\'])*?\')+)(?:;|$)'
     );
 
-    // ^@import\s*([^;"']|("|')(?:\\\2|.)*?\2)+;
+    // ^@import\s*([^;"']|("|')(?:\\\2|.)*?\2)+(;|$)
 
     return function (): T1 | void {
       const pos = position();

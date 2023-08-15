@@ -1,3 +1,8 @@
+4.3.1 / 2023-03-14
+==================
+
+ * Fix redos vulnerability with specific crafted css string - CVE-2023-26364
+
 4.3.0 / 2023-03-07
 ==================
 
