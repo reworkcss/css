@@ -1576,9 +1576,9 @@
   integrity sha512-rVCCileCU5NhP9Ix1e03sIn4gd0mpjh7VNULVQAxzF+9vddk6A5QAHzp2h5kXH8pkv1Ow45fUf3QP3wOEiISvA==
 
 "@types/bytes@^3.1.1":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@types/bytes/-/bytes-3.1.3.tgz#929ce4acb29f6a9eb59b1842f079a50abad0d9d2"
-  integrity sha512-eEgZiWn6cjG8tc+AkI3FIa9ub9zhLMSRHqbecHe5yffqws+848zoHdbgFYxvUks4RElfJB9cupvqcd1gvDFQig==
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@types/bytes/-/bytes-3.1.4.tgz#8563f38ea6096df3f409c6500e8ac171790a7c1f"
+  integrity sha512-A0uYgOj3zNc4hNjHc5lYUfJQ/HVyBXiUMKdXd7ysclaE6k9oJdavQzODHuwjpUu2/boCP8afjQYi8z/GtvNCWA==
 
 "@types/graceful-fs@^4.1.3":
   version "4.1.5"
