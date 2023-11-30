@@ -1,3 +1,10 @@
+4.3.2 / 2023-11-28
+==================
+
+ * Fix redos vulnerability with specific crafted css string - CVE-2023-48631
+ * Fix Problem parsing with :is() and nested :nth-child() #211
+
+
 4.3.1 / 2023-03-14
 ==================
 
