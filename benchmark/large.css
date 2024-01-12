@@ -136,11 +136,11 @@
 .ui.form input[type="tel"] {
   margin: 0em;
   padding: 0.65em 1em;
-  font-size: 1em;
+  font-size: 2em;
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.15);
   outline: none;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(blue);
   border-radius: 0.3125em;
   -webkit-transition: background-color 0.3s ease-out, -webkit-box-shadow 0.2s ease, border-color 0.2s ease;
   -moz-transition: background-color 0.3s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
