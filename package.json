@@ -1,12 +1,13 @@
 {
   "name": "@adobe/css-tools",
-  "version": "4.3.2",
+  "version": "4.3.3",
   "description": "CSS parser / stringifier",
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "exports": {
     "import": "./dist/index.mjs",
+    "types": "./dist/types.d.ts",
     "require": "./dist/index.cjs"
   },
   "types": "./dist/types.d.ts",
