@@ -1,5 +1,7 @@
 var fs = require('fs');
 var path = require('path');
+var assert = require('node:assert');
+var { describe, it } = require('node:test');
 var parse = require('../').parse;
 var stringify = require('../').stringify;
 
@@ -14,17 +16,17 @@ cases.forEach(function(name) {
 
     it('should match ast.json', function() {
       var ast = parseInput();
-      ast.should.containDeep(JSON.parse(readFile(astFile)));
+      containDeep(ast, JSON.parse(readFile(astFile)));
     });
 
     it('should match output.css', function() {
       var output = stringify(parseInput());
-      output.should.equal(readFile(outputFile).trim());
+      assert.strictEqual(output, readFile(outputFile).trim());
     });
 
     it('should match compressed.css', function() {
       var compressed = stringify(parseInput(), { compress: true });
-      compressed.should.equal(readFile(compressedFile));
+      assert.strictEqual(compressed, readFile(compressedFile));
     });
 
     function parseInput() {
@@ -41,4 +43,21 @@ function readFile(file) {
   src = src.replace(/\n$/, '');
 
   return src;
+}
+
+// Assert that `actual` deeply contains every property/element of `expected`.
+function containDeep(actual, expected) {
+  if (Array.isArray(expected)) {
+    assert.ok(Array.isArray(actual));
+    expected.forEach(function(item, i) {
+      containDeep(actual[i], item);
+    });
+  } else if (expected && typeof expected === 'object') {
+    assert.ok(actual && typeof actual === 'object');
+    Object.keys(expected).forEach(function(key) {
+      containDeep(actual[key], expected[key]);
+    });
+  } else {
+    assert.strictEqual(actual, expected);
+  }
 }

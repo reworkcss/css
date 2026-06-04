@@ -1,4 +1,14 @@
-# css [![Build Status](https://travis-ci.org/reworkcss/css.svg?branch=master)](https://travis-ci.org/reworkcss/css)
+# css
+
+[![npm package version](https://img.shields.io/npm/v/css) ![npm downloads](https://img.shields.io/npm/dm/css)](https://www.npmjs.com/package/css)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/reworkcss/css/test.yml)](https://github.com/reworkcss/css/actions)
+[![License](https://img.shields.io/github/license/reworkcss/css)](https://github.com/reworkcss/css)  
+
+> [!NOTE]  
+> There have not been material changes to this package in 10 years. New changes and bug fixes are not planned. In the event of concrete security issues, changes may still occur. We recommend moving to something else more modern.
+
+> [!TIP]
+> Use [@adobe/css-tools](https://github.com/adobe/css-tools) instead
 
 CSS parser / stringifier.
 

@@ -1,5 +1,6 @@
 var parse = require('../').parse;
-var should = require('should');
+var assert = require('node:assert');
+var { describe, it } = require('node:test');
 
 describe('parse(str)', function() {
   it('should save the filename and source', function() {
@@ -8,50 +9,50 @@ describe('parse(str)', function() {
       source: 'booty.css'
     });
 
-    ast.stylesheet.source.should.equal('booty.css');
+    assert.strictEqual(ast.stylesheet.source, 'booty.css');
 
     var position = ast.stylesheet.rules[0].position;
-    position.start.should.be.ok;
-    position.end.should.be.ok;
-    position.source.should.equal('booty.css');
-    position.content.should.equal(css);
+    assert.ok(position.start);
+    assert.ok(position.end);
+    assert.strictEqual(position.source, 'booty.css');
+    assert.strictEqual(position.content, css);
   });
 
   it('should throw when a selector is missing', function() {
-    should(function() {
+    assert.throws(function() {
       parse('{size: large}');
-    }).throw();
+    });
 
-    should(function() {
+    assert.throws(function() {
       parse('b { color: red; }\n{ color: green; }\na { color: blue; }');
-    }).throw();
+    });
   });
 
   it('should throw when a broken comment is found', function () {
-    should(function() {
+    assert.throws(function() {
       parse('thing { color: red; } /* b { color: blue; }');
-    }).throw();
+    });
 
-    should(function() {
+    assert.throws(function() {
       parse('/*');
-    }).throw();
+    });
 
     /* Nested comments should be fine */
-    should(function() {
+    assert.doesNotThrow(function() {
       parse('/* /* */');
-    }).not.throw();
+    });
   });
 
   it('should allow empty property value', function() {
-    should(function() {
+    assert.doesNotThrow(function() {
       parse('p { color:; }');
-    }).not.throw();
+    });
   });
 
   it('should not throw with silent option', function () {
-    should(function() {
+    assert.doesNotThrow(function() {
       parse('thing { color: red; } /* b { color: blue; }', { silent: true });
-    }).not.throw();
+    });
   });
 
   it('should list the parsing errors and continue parsing', function() {
@@ -61,18 +62,18 @@ describe('parse(str)', function() {
     });
 
     var rules = result.stylesheet.rules;
-    rules.length.should.be.above(2);
+    assert.ok(rules.length > 2);
 
     var errors = result.stylesheet.parsingErrors;
-    errors.length.should.equal(2);
+    assert.strictEqual(errors.length, 2);
 
-    errors[0].should.have.a.property('message');
-    errors[0].should.have.a.property('reason');
-    errors[0].should.have.a.property('filename');
-    errors[0].filename.should.equal('foo.css');
-    errors[0].should.have.a.property('line');
-    errors[0].should.have.a.property('column');
-    errors[0].should.have.a.property('source');
+    assert.ok('message' in errors[0]);
+    assert.ok('reason' in errors[0]);
+    assert.ok('filename' in errors[0]);
+    assert.strictEqual(errors[0].filename, 'foo.css');
+    assert.ok('line' in errors[0]);
+    assert.ok('column' in errors[0]);
+    assert.ok('source' in errors[0]);
 
   });
 
@@ -81,28 +82,28 @@ describe('parse(str)', function() {
       'thing { test: value; }\n' +
       '@media (min-width: 100px) { thing { test: value; } }');
 
-    should(result.parent).equal(null);
+    assert.strictEqual(result.parent, null);
 
     var rules = result.stylesheet.rules;
-    rules.length.should.equal(2);
+    assert.strictEqual(rules.length, 2);
 
     var rule = rules[0];
-    rule.parent.should.equal(result);
-    rule.declarations.length.should.equal(1);
+    assert.strictEqual(rule.parent, result);
+    assert.strictEqual(rule.declarations.length, 1);
 
     var decl = rule.declarations[0];
-    decl.parent.should.equal(rule);
+    assert.strictEqual(decl.parent, rule);
 
     var media = rules[1];
-    media.parent.should.equal(result);
-    media.rules.length.should.equal(1);
+    assert.strictEqual(media.parent, result);
+    assert.strictEqual(media.rules.length, 1);
 
     rule = media.rules[0];
-    rule.parent.should.equal(media);
+    assert.strictEqual(rule.parent, media);
 
-    rule.declarations.length.should.equal(1);
+    assert.strictEqual(rule.declarations.length, 1);
     decl = rule.declarations[0];
-    decl.parent.should.equal(rule);
+    assert.strictEqual(decl.parent, rule);
   });
 
 });

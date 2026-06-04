@@ -2,6 +2,8 @@ var stringify = require('../').stringify;
 var parse = require('../').parse;
 var path = require('path');
 var read = require('fs').readFileSync;
+var assert = require('node:assert');
+var { describe, it } = require('node:test');
 var SourceMapConsumer = require('source-map').SourceMapConsumer;
 var SourceMapGenerator = require('source-map').SourceMapGenerator;
 
@@ -24,29 +26,29 @@ describe('stringify(obj, {sourcemap: true})', function() {
 
   it('should generate source maps alongside when using identity compiler', function() {
     var result = stringify(stylesheet, { sourcemap: true });
-    result.should.have.property('code');
-    result.should.have.property('map');
+    assert.ok('code' in result);
+    assert.ok('map' in result);
     var map = new SourceMapConsumer(result.map);
-    map.originalPositionFor({ line: 1, column: 0 }).should.eql(locs.tobiSelector);
-    map.originalPositionFor({ line: 2, column: 2 }).should.eql(locs.tobiNameName);
-    map.originalPositionFor({ line: 2, column: 8 }).should.eql(locs.tobiNameValue);
-    map.originalPositionFor({ line: 11, column: 0 }).should.eql(locs.mediaBlock);
-    map.originalPositionFor({ line: 12, column: 2 }).should.eql(locs.mediaOnly);
-    map.originalPositionFor({ line: 17, column: 0 }).should.eql(locs.comment);
-    map.sourceContentFor(file).should.eql(src);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 1, column: 0 }), locs.tobiSelector);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 2, column: 2 }), locs.tobiNameName);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 2, column: 8 }), locs.tobiNameValue);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 11, column: 0 }), locs.mediaBlock);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 12, column: 2 }), locs.mediaOnly);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 17, column: 0 }), locs.comment);
+    assert.deepStrictEqual(map.sourceContentFor(file), src);
   });
 
   it('should generate source maps alongside when using compress compiler', function() {
     var result = stringify(stylesheet, { compress: true, sourcemap: true });
-    result.should.have.property('code');
-    result.should.have.property('map');
+    assert.ok('code' in result);
+    assert.ok('map' in result);
     var map = new SourceMapConsumer(result.map);
-    map.originalPositionFor({ line: 1, column: 0 }).should.eql(locs.tobiSelector);
-    map.originalPositionFor({ line: 1, column: 5 }).should.eql(locs.tobiNameName);
-    map.originalPositionFor({ line: 1, column: 10 }).should.eql(locs.tobiNameValue);
-    map.originalPositionFor({ line: 1, column: 50 }).should.eql(locs.mediaBlock);
-    map.originalPositionFor({ line: 1, column: 64 }).should.eql(locs.mediaOnly);
-    map.sourceContentFor(file).should.eql(src);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 1, column: 0 }), locs.tobiSelector);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 1, column: 5 }), locs.tobiNameName);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 1, column: 10 }), locs.tobiNameValue);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 1, column: 50 }), locs.mediaBlock);
+    assert.deepStrictEqual(map.originalPositionFor({ line: 1, column: 64 }), locs.mediaOnly);
+    assert.deepStrictEqual(map.sourceContentFor(file), src);
   });
 
   it('should apply included source maps, with paths adjusted to CWD', function() {
@@ -54,18 +56,18 @@ describe('stringify(obj, {sourcemap: true})', function() {
     var src = read(file, 'utf8');
     var stylesheet = parse(src, { source: file });
     var result = stringify(stylesheet, { sourcemap: true });
-    result.should.have.property('code');
-    result.should.have.property('map');
+    assert.ok('code' in result);
+    assert.ok('map' in result);
 
     var map = new SourceMapConsumer(result.map);
-    map.originalPositionFor({ line: 1, column: 0 }).should.eql({
+    assert.deepStrictEqual(map.originalPositionFor({ line: 1, column: 0 }), {
       column: 0,
       line: 1,
       name: null,
       source: 'test/source-map/apply.scss'
     });
 
-    map.originalPositionFor({ line: 2, column: 2 }).should.eql({
+    assert.deepStrictEqual(map.originalPositionFor({ line: 2, column: 2 }), {
       column: 7,
       line: 1,
       name: null,
@@ -80,7 +82,7 @@ describe('stringify(obj, {sourcemap: true})', function() {
     var result = stringify(stylesheet, { sourcemap: true, inputSourcemaps: false });
 
     var map = new SourceMapConsumer(result.map);
-    map.originalPositionFor({ line: 1, column: 0 }).should.eql({
+    assert.deepStrictEqual(map.originalPositionFor({ line: 1, column: 0 }), {
       column: 0,
       line: 1,
       name: null,
@@ -97,7 +99,7 @@ describe('stringify(obj, {sourcemap: true})', function() {
     var stylesheet = parse(css, { source: src });
     var result = stringify(stylesheet, { sourcemap: true });
 
-    result.map.sources.should.eql(['/test/source.css']);
+    assert.deepStrictEqual(result.map.sources, ['/test/source.css']);
 
     path.sep = originalSep;
   });
@@ -107,7 +109,7 @@ describe('stringify(obj, {sourcemap: true})', function() {
     var stylesheet = parse(css);
     var result = stringify(stylesheet, { sourcemap: 'generator' });
 
-    result.map.should.be.an.instanceOf(SourceMapGenerator);
+    assert.ok(result.map instanceof SourceMapGenerator);
   });
 });
 
@@ -122,16 +124,16 @@ describe('stringify(obj, {indent: *})', function() {
 
   it('should default to two-space indent', function(){
     var result = stringify(stylesheet);
-    result.should.eql(css.replace(/\t/g, '  '));
+    assert.strictEqual(result, css.replace(/\t/g, '  '));
   });
 
   it('should indent according to the indent string', function(){
     var result = stringify(stylesheet, { indent: '\t' });
-    result.should.eql(css);
+    assert.strictEqual(result, css);
   });
 
   it('should accept empty string for indent', function(){
     var result = stringify(stylesheet, { indent: '' });
-    result.should.eql(css.replace(/\t/g, ''));
+    assert.strictEqual(result, css.replace(/\t/g, ''));
   });
 });
