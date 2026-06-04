@@ -1,0 +1,4 @@
+# Normalize line endings to LF on checkout, on every platform.
+# The test fixtures (and the stringify output they are compared against)
+# assume LF, so a CRLF checkout on Windows would break the tests.
+* text=auto eol=lf
